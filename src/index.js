@@ -1,10 +1,10 @@
-const allProjects = [];
+const allProjects = {};
 
 // Factory function to create new project
 const createProject = function(title) {
     const todos = {};
     const newProject = { title, todos };
-    allProjects.push(newProject);
+    allProjects[title] = newProject;
     return newProject;
 }
 
@@ -25,8 +25,11 @@ const createToDoItem = function(title, directory = inbox, description, dueDate, 
     // Create the new to-do item
     const createdItem = { title, description, dueDate, priority, project, complete };
 
-    // Push the newly created item onto the desired projects list
+    // Add the newly created item onto the desired projects list
     directory.todos[title] = createdItem;
+
+    // Add updated projects list to 'all projects' list
+    allProjects[directory.title] = directory;
 
     // Return the item, thereby assigning it to the created variable outside 
     return createdItem;
