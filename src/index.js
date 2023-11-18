@@ -1,4 +1,4 @@
-// Logic to create new project
+// Factory function to create new project
 const createProject = function(title) {
     const todos = [];
     return { title, todos };
@@ -11,10 +11,13 @@ const inbox = createProject('Inbox');
 const createToDoItem = function(title, description, dueDate, priority, container = inbox) {
 
     // Define a "project" property for every todo item that returns the title of the project it belongs to
-    const project = container.title
+    const project = container.title;
+
+    // Define a "complete" property which defaults to False
+    const complete = false;
 
     // Create the new to-do item
-    const createdItem = { title, description, dueDate, priority, project };
+    const createdItem = { title, description, dueDate, priority, project, complete };
 
     // Push the newly created item onto the desired projects list
     container.todos.push(createdItem);
@@ -25,4 +28,4 @@ const createToDoItem = function(title, description, dueDate, priority, container
 
 // Creation of new todo item for testing
 const item = createToDoItem('item')
-console.log(item.project);
+console.log(item);
