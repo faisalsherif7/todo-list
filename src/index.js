@@ -35,14 +35,17 @@ const createToDoItem = function(title, directory = inbox, description, dueDate, 
     return createdItem;
 }
 
-// Creation of new todo item for testing
-const item = createToDoItem('item')
-console.log(item);
-
-const tasks = createProject('Tasks');
-const learn = createToDoItem('Learn');
-console.log(learn.project());
-console.log(tasks);
-
-
-console.log(allProjects);
+// Add item DOM
+const form = document.querySelector('.add-item-form');
+document.querySelector('button').addEventListener('click', function (event) {
+    console.log('here');
+    event.preventDefault();
+    
+    const title = document.querySelector('#title').value;
+    const description = document.querySelector('#description').value;
+    const dueDate = document.querySelector('#due-date').value;
+    const priority = document.querySelector('#priority').value;
+    
+    createToDoItem(title, inbox, description, dueDate, priority);
+    console.log(inbox.todos);
+})
