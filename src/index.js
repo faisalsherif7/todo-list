@@ -1,5 +1,6 @@
 let allProjects;
 
+// Check if local storage contains "allProjects" and if not, initiate it as an empty object
 const items = localStorage.getItem('allProjects');
 if (items === '') {
     allProjects = {};
@@ -8,14 +9,16 @@ if (items === '') {
     allProjects = parsedItems
 }
 
-console.log(allProjects);
+const updateLocalStorage = function() {
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+}
 
 // Factory function to create new project
 const createProject = function(title) {
     const todos = {};
     const newProject = { title, todos };
     allProjects[title] = newProject;
-    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+    updateLocalStorage();
     return newProject;
 }
 
@@ -43,11 +46,13 @@ const createToDoItem = function(title, directory = inbox, description, dueDate, 
     allProjects[directory.title] = directory;
 
     // Update local storage
-    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+    updateLocalStorage();
 
     // Return the item, thereby assigning it to the created variable outside 
     return createdItem;
 }
+
+
 
 // Add item DOM
 const form = document.querySelector('.add-item-form');
