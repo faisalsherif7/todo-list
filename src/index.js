@@ -1,10 +1,21 @@
-const allProjects = {};
+let allProjects;
+
+const items = localStorage.getItem('allProjects');
+if (items === '') {
+    allProjects = {};
+} else {
+    const parsedItems = JSON.parse(items);
+    allProjects = parsedItems
+}
+
+console.log(allProjects);
 
 // Factory function to create new project
 const createProject = function(title) {
     const todos = {};
     const newProject = { title, todos };
     allProjects[title] = newProject;
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
     return newProject;
 }
 
@@ -31,6 +42,9 @@ const createToDoItem = function(title, directory = inbox, description, dueDate, 
     // Add updated projects list to 'all projects' list
     allProjects[directory.title] = directory;
 
+    // Update local storage
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+
     // Return the item, thereby assigning it to the created variable outside 
     return createdItem;
 }
@@ -38,7 +52,6 @@ const createToDoItem = function(title, directory = inbox, description, dueDate, 
 // Add item DOM
 const form = document.querySelector('.add-item-form');
 document.querySelector('button').addEventListener('click', function (event) {
-    console.log('here');
     event.preventDefault();
     
     const title = document.querySelector('#title').value;
@@ -47,5 +60,4 @@ document.querySelector('button').addEventListener('click', function (event) {
     const priority = document.querySelector('#priority').value;
     
     createToDoItem(title, inbox, description, dueDate, priority);
-    console.log(inbox.todos);
 })
