@@ -2,7 +2,7 @@ import './style.css';
 
 let allProjects;
 
-// Check if local storage contains "allProjects" and if not, initiate it as an empty object
+// Check if local storage contains "allProjects" and if not, initiate it with default "inbox" project
 const syncAllProjects = function() {
     const items = localStorage.getItem('allProjects');
     console.log(items);
@@ -82,3 +82,20 @@ addTaskButton.addEventListener("click", () => {
 closeDialogButton.addEventListener("click", () => {
     dialog.close();
 })
+
+const populateSidebar = function() {
+    const sidebar = document.querySelector('.sidebar');
+    for (const project in allProjects) {
+        const newProject = document.createElement('div');
+        newProject.className = 'sidebar-item';
+        newProject.innerHTML = `
+            <p class="project">${project}</p>
+        `;
+        sidebar.appendChild(newProject);
+        console.log(allProjects.Inbox);
+    }
+}
+
+console.log(allProjects);
+
+populateSidebar();
