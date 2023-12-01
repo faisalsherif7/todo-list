@@ -15,11 +15,9 @@ const syncAllProjects = function() {
     }
 }
 
-
 // Function to update local storage after making changes to allProjects object
 const updateLocalStorage = function() {
     localStorage.setItem('allProjects', JSON.stringify(allProjects));
-    console.log('local storage updated');
 }
 
 syncAllProjects();
@@ -61,7 +59,7 @@ const createToDoItem = function(title, directory = allProjects.Inbox, descriptio
 }
 
 
-// Add item DOM
+// Accept form input and create new task
 document.querySelector('.submit-form').addEventListener('click', function (event) {
     event.preventDefault();
     
@@ -74,6 +72,7 @@ document.querySelector('.submit-form').addEventListener('click', function (event
     console.log(allProjects.Inbox.todos);
 })
 
+// Dialog functionality
 const addTaskButton = document.querySelector('.add-task');
 const closeDialogButton = document.querySelector('.close-dialog')
 const dialog = document.querySelector('dialog');
