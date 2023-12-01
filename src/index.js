@@ -52,6 +52,9 @@ const createToDoItem = function(title, directory = inbox, description, dueDate, 
     return createdItem;
 }
 
+const viewAllProjects = function() {
+    
+}
 
 
 // Add item DOM
@@ -65,4 +68,14 @@ document.querySelector('button').addEventListener('click', function (event) {
     const priority = document.querySelector('#priority').value;
     
     createToDoItem(title, inbox, description, dueDate, priority);
+})
+
+const addTaskButton = document.querySelector('.add-task');
+const closeDialogButton = document.querySelector('.close-dialog')
+const dialog = document.querySelector('dialog');
+addTaskButton.addEventListener("click", () => {
+    dialog.showModal();
+  });
+closeDialogButton.addEventListener("click", () => {
+    dialog.close();
 })
