@@ -3,17 +3,22 @@ import './style.css';
 let allProjects;
 
 // Check if local storage contains "allProjects" and if not, initiate it as an empty object
-const items = localStorage.getItem('allProjects');
-if (items === '') {
-    allProjects = {};
-} else {
-    const parsedItems = JSON.parse(items);
-    allProjects = parsedItems
+const syncAllProjects = function() {
+    const items = localStorage.getItem('allProjects');
+    if (items === '') {
+        allProjects = {};
+    } else {
+        const parsedItems = JSON.parse(items);
+        allProjects = parsedItems
+    }
 }
 
+// Function to update local storage after making changes to allProjects object
 const updateLocalStorage = function() {
     localStorage.setItem('allProjects', JSON.stringify(allProjects));
 }
+
+syncAllProjects();
 
 // Factory function to create new project
 const createProject = function(title) {
@@ -54,14 +59,10 @@ const createToDoItem = function(title, directory = inbox, description, dueDate, 
     return createdItem;
 }
 
-const viewAllProjects = function() {
-    
-}
-
 
 // Add item DOM
 const form = document.querySelector('.add-item-form');
-document.querySelector('button').addEventListener('click', function (event) {
+document.querySelector('.submit-form').addEventListener('click', function (event) {
     event.preventDefault();
     
     const title = document.querySelector('#title').value;
@@ -81,3 +82,5 @@ addTaskButton.addEventListener("click", () => {
 closeDialogButton.addEventListener("click", () => {
     dialog.close();
 })
+
+console.log(allProjects);
