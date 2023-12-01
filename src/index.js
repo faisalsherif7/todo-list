@@ -1,3 +1,5 @@
+import './style.css';
+
 let allProjects;
 
 // Check if local storage contains "allProjects" and if not, initiate it as an empty object
