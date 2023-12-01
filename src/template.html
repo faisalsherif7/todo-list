@@ -7,19 +7,28 @@
 </head>
 <body>
 
+    <div class="navbar">Todo list</div>
+    
     <div class="container">
-        <div class="navbar"></div>
-        <button type="button" class="add-task">Add Task</button>
-        <dialog>
-            <form action="" class="add-item-form">
-                <input type="text" name="title" id="title" placeholder="title">
-                <input type="text" name="description" id="description" placeholder="description">
-                <input type="date" name="due-date" id="due-date" placeholder="due date">
-                <input type="text" name="priority" id="priority" placeholder="priority">
-                <button type="button">Submit</button>
-                <button type="button" class="close-dialog">Close</button>
-            </form>
-        </dialog>
+        <div class="sidebar">
+            Inbox
+        </div>
+        <div class="content">
+
+            <div class="add-task-div">
+                <button type="button" class="add-task">+</button>
+                <dialog>
+                    <form action="" class="add-item-form">
+                        <input type="text" name="title" id="title" placeholder="title">
+                        <input type="text" name="description" id="description" placeholder="description">
+                        <input type="date" name="due-date" id="due-date" placeholder="due date">
+                        <input type="text" name="priority" id="priority" placeholder="priority">
+                        <button type="button">Submit</button>
+                        <button type="button" class="close-dialog">Close</button>
+                    </form>
+                </dialog>
+            </div>
+        </div>
     </div>
     
 </body>
