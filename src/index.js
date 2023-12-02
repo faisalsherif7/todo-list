@@ -28,11 +28,12 @@ function createProject (title) {
     allProjects[title] = newProject;
     updateLocalStorage();
     populateSidebar();
+    selectProjectFromList();
     return newProject;
 }
 
 // Factory function to create new todo list, added to inbox by default
-const createTask = function(title, directory = allProjects.Inbox, description, dueDate, priority) {
+const createTask = function(title, directory, description, dueDate, priority) {
 
     // Define a "project" method for every todo item that returns the title of the project it belongs to
     const project = function () {
@@ -46,13 +47,12 @@ const createTask = function(title, directory = allProjects.Inbox, description, d
     const createdItem = { title, description, dueDate, priority, project, complete };
 
     // Add the newly created item onto the desired projects list
-    directory.tasks[title] = createdItem;
-
-    // Add updated projects list to 'all projects' list
-    allProjects[directory.title] = directory;
+    allProjects[directory].tasks[title] = createdItem;
 
     // Update local storage
     updateLocalStorage();
+
+    console.log(allProjects);
 
     // Return the item, thereby assigning it to the created variable outside 
     return createdItem;
@@ -68,15 +68,15 @@ const addTask = function() {
         const description = document.querySelector('#description').value;
         const dueDate = document.querySelector('#due-date').value;
         const priority = document.querySelector('#priority').value;
+        const project = document.querySelector('#select-project').value;
         
-        createTask(title, allProjects.Inbox, description, dueDate, priority);
+        createTask(title, project, description, dueDate, priority);
     })
 }();
 
 const addProject = function() {
     document.querySelector('.submit-project-form').addEventListener('click', function (event) {
         event.preventDefault();
-
         const title = document.querySelector('#project-title').value;
         createProject(title);
     })
@@ -122,17 +122,17 @@ function populateSidebar() {
     }
 }
 
-const selectProjectFromList = function() {
+function selectProjectFromList() {
     const selectProject = document.querySelector('#select-project');
     selectProject.innerHTML = '';
-    selectProject.innerHTML = '<option value="">Select Project</option>';
     for (const project in allProjects) {
         selectProject.innerHTML += `
             <option value="${project}">${project}</option>
         `;
     }
-}();
+};
 
 populateSidebar();
+selectProjectFromList();
 
 console.log(allProjects);
