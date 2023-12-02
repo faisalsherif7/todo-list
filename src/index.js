@@ -5,11 +5,9 @@ let allProjects;
 // Check if local storage contains "allProjects" and if not, initiate it with default "inbox" project
 const syncAllProjects = function() {
     const items = localStorage.getItem('allProjects');
-    console.log(items);
     if (items === null) {
         allProjects = {};
         createProject('Inbox');
-        console.log(allProjects);
     } else {
         const parsedItems = JSON.parse(items);
         allProjects = parsedItems
@@ -72,7 +70,6 @@ const addTask = function() {
         const priority = document.querySelector('#priority').value;
         
         createTask(title, allProjects.Inbox, description, dueDate, priority);
-        console.log(allProjects.Inbox.tasks);
     })
 }();
 
@@ -122,10 +119,20 @@ function populateSidebar() {
             <p class="project">${project}</p>
         `;
         sidebar.appendChild(newProject);
-        console.log(allProjects.Inbox);
     }
 }
 
-console.log(allProjects);
+const selectProjectFromList = function() {
+    const selectProject = document.querySelector('#select-project');
+    selectProject.innerHTML = '';
+    selectProject.innerHTML = '<option value="">Select Project</option>';
+    for (const project in allProjects) {
+        selectProject.innerHTML += `
+            <option value="${project}">${project}</option>
+        `;
+    }
+}();
 
 populateSidebar();
+
+console.log(allProjects);
