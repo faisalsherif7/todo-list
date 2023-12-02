@@ -6,9 +6,10 @@ let allProjects;
 const syncAllProjects = function() {
     const items = localStorage.getItem('allProjects');
     console.log(items);
-    if (items === '') {
+    if (items === null) {
         allProjects = {};
         createProject('Inbox');
+        console.log(allProjects);
     } else {
         const parsedItems = JSON.parse(items);
         allProjects = parsedItems
@@ -23,16 +24,16 @@ const updateLocalStorage = function() {
 syncAllProjects();
 
 // Factory function to create new project
-const createProject = function(title) {
-    const todos = {};
-    const newProject = { title, todos };
+function createProject (title) { 
+    const tasks = {};
+    const newProject = { title, tasks };
     allProjects[title] = newProject;
     updateLocalStorage();
     return newProject;
 }
 
 // Factory function to create new todo list, added to inbox by default
-const createToDoItem = function(title, directory = allProjects.Inbox, description, dueDate, priority) {
+const createTask = function(title, directory = allProjects.Inbox, description, dueDate, priority) {
 
     // Define a "project" method for every todo item that returns the title of the project it belongs to
     const project = function () {
@@ -46,7 +47,7 @@ const createToDoItem = function(title, directory = allProjects.Inbox, descriptio
     const createdItem = { title, description, dueDate, priority, project, complete };
 
     // Add the newly created item onto the desired projects list
-    directory.todos[title] = createdItem;
+    directory.tasks[title] = createdItem;
 
     // Add updated projects list to 'all projects' list
     allProjects[directory.title] = directory;
@@ -68,8 +69,8 @@ document.querySelector('.submit-form').addEventListener('click', function (event
     const dueDate = document.querySelector('#due-date').value;
     const priority = document.querySelector('#priority').value;
     
-    createToDoItem(title, allProjects.Inbox, description, dueDate, priority);
-    console.log(allProjects.Inbox.todos);
+    createTask(title, allProjects.Inbox, description, dueDate, priority);
+    console.log(allProjects.Inbox.tasks);
 })
 
 // Dialog functionality
