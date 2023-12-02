@@ -29,6 +29,7 @@ function createProject (title) {
     const newProject = { title, tasks };
     allProjects[title] = newProject;
     updateLocalStorage();
+    populateSidebar();
     return newProject;
 }
 
@@ -75,6 +76,15 @@ const addTask = function() {
     })
 }();
 
+const addProject = function() {
+    document.querySelector('.submit-project-form').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const title = document.querySelector('#project-title').value;
+        createProject(title);
+    })
+}();
+
 
 // Dialog functionality
 const taskDialog = function() {
@@ -102,8 +112,9 @@ const projectDialog = function() {
 }();
 
 
-const populateSidebar = function() {
-    const sidebar = document.querySelector('.sidebar');
+function populateSidebar() {
+    const sidebar = document.querySelector('.sidebar-projects');
+    sidebar.innerHTML = '';
     for (const project in allProjects) {
         const newProject = document.createElement('div');
         newProject.className = 'sidebar-item';
