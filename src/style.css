@@ -81,3 +81,15 @@ table {
 .content {
     padding: 40px;
 }
+
+.project {
+    margin: 10px 0px;
+    padding: 7px;
+    transition: 0.2s;
+    border-radius: 5px;
+}
+
+.project:hover {
+    background-color: rgb(252, 141, 141);
+    cursor: pointer;
+}
