@@ -54,4 +54,8 @@ const createTask = function(title, directory, description, dueDate, priority) {
     return createdItem;
 }
 
+export const getTasksInProject = function (projectName) {
+    return allProjects[projectName].tasks;
+}
+
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }

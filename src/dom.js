@@ -57,7 +57,7 @@ function populateSidebar() {
         const newProject = document.createElement('div');
         newProject.className = 'sidebar-item';
         newProject.innerHTML = `
-            <p class="project">${project}</p>
+            <p class="project" data-project-name="${project}">${project}</p>
         `;
         sidebar.appendChild(newProject);
     }
@@ -73,4 +73,26 @@ function selectProjectFromList() {
     }
 };
 
-export { addTask, addProject, taskDialog, projectDialog, populateSidebar, selectProjectFromList }
+export const switchProjects = function() {
+    const sidebar = document.querySelector('.sidebar-projects');
+    sidebar.addEventListener('click', (event) => {
+        if (event.target.className === 'project') {
+            let clickedProject = event.target;
+            const projectName = clickedProject.dataset.projectName;
+            const tasks = crud.getTasksInProject(projectName);
+            displayTasks(tasks);
+        }
+    })
+}();
+
+export const displayTasks = function(tasksObject) {
+    const content = document.querySelector('.tasks-content');
+    content.innerHTML = '';
+    for (const task in tasksObject) {
+        content.innerHTML += `
+            <p>${task}</p>
+        `;
+    }
+};
+
+export { addTask, addProject, taskDialog, projectDialog, populateSidebar, selectProjectFromList };
