@@ -26,7 +26,7 @@ const addProject = function() {
 
 // Dialog functionality
 const taskDialog = function() {
-    const addTaskButton = document.querySelector('.add-task');
+    const addTaskButton = document.querySelector('.add-task-button');
     const closeDialogButton = document.querySelector('.close-task-dialog')
     const dialog = document.querySelector('.add-task-dialog');
     addTaskButton.addEventListener("click", () => {
@@ -90,7 +90,9 @@ export const displayTasks = function(tasksObject) {
     content.innerHTML = '';
     for (const task in tasksObject) {
         content.innerHTML += `
-            <p>${task}</p>
+            <div class="task-item">
+                <p>${task}</p>
+            </div>
         `;
     }
 };
