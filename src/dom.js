@@ -88,12 +88,19 @@ export const switchProjects = function() {
 export const displayTasks = function(tasksObject) {
     const content = document.querySelector('.tasks-content');
     content.innerHTML = '';
-    for (const task in tasksObject) {
+    for (const key in tasksObject) {
+        const task = tasksObject[key];
         content.innerHTML += `
             <div class="task-item">
-                <p>${task}</p>
+                <p class="task-title">${task.title}</p>
+                <p class="task-description">${task.description}</p>
+                <p class="task-priority">${task.priority}</p>
+                <p class="task-due-date">${task.dueDate}</p>
+                <button type="button" class="delete-task-button">Del</button>
             </div>
         `;
+        console.log(task)
+        console.log(tasksObject);
     }
 };
 
