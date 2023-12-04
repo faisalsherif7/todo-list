@@ -12,6 +12,7 @@ const addTask = function() {
         const project = document.querySelector('#select-project').value;
         
         crud.createTask(title, project, description, dueDate, priority);
+        displayTasks(crud.allProjects[project].tasks);
     })
 }();
 
@@ -96,11 +97,10 @@ export const displayTasks = function(tasksObject) {
                 <p class="task-description">${task.description}</p>
                 <p class="task-priority">${task.priority}</p>
                 <p class="task-due-date">${task.dueDate}</p>
+                <p>${task.id}</p>
                 <button type="button" class="delete-task-button">Del</button>
             </div>
         `;
-        console.log(task)
-        console.log(tasksObject);
     }
 };
 

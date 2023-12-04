@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 let allProjects;
 
 // Check if local storage contains "allProjects" and if not, initiate it with default "inbox" project
@@ -39,19 +41,20 @@ const createTask = function(title, directory, description, dueDate, priority) {
     // Define a "complete" property which defaults to False
     const complete = false;
 
+    // Create a unique identifier for created object
+    const id = uuid();
+
     // Create the new to-do item
-    const createdItem = { title, description, dueDate, priority, project, complete };
+    const createdTask = { title, description, dueDate, priority, project, complete, id };
 
     // Add the newly created item onto the desired projects list
-    allProjects[directory].tasks[title] = createdItem;
+    allProjects[directory].tasks[title] = createdTask;
 
     // Update local storage
     updateLocalStorage();
 
-    console.log(allProjects);
-
     // Return the item, thereby assigning it to the created variable outside 
-    return createdItem;
+    return createdTask;
 }
 
 export const getTasksInProject = function (projectName) {
