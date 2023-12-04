@@ -92,6 +92,7 @@ export const displayTasks = function(tasksObject) {
     content.innerHTML = '';
     for (const key in tasksObject) {
         const task = tasksObject[key];
+        console.log(task);
         content.innerHTML += `
             <div class="task-item">
                 <p class="task-title">Task name - ${task.title}</p>
@@ -121,7 +122,6 @@ export const deleteProjectEvent = function() {
     content.addEventListener('click', (event) => {
         if (event.target.className === 'delete-project-button') {
             const id = event.target.dataset.projectId;
-            console.log(id);
             crud.deleteProject(id);
         }
     })

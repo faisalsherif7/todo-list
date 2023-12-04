@@ -78,7 +78,13 @@ export const deleteTask = function(id) {
 };
 
 export const deleteProject = function(id) {
-    
-}
+    for (const key in allProjects) {
+        if (key === id) {
+            delete allProjects[key];
+            updateLocalStorage();
+            dom.displayProjects();
+        }
+    }
+};
 
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }
