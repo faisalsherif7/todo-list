@@ -51,14 +51,15 @@ const projectDialog = function() {
 }();
 
 
-function populateSidebar() {
+function displayProjects() {
     const sidebar = document.querySelector('.sidebar-projects');
     sidebar.innerHTML = '';
-    for (const project in crud.allProjects) {
+    for (const key in crud.allProjects) {
+        const project = crud.allProjects[key];
         const newProject = document.createElement('div');
         newProject.className = 'sidebar-item';
         newProject.innerHTML = `
-            <p class="project" data-project-name="${project}">${project}</p>
+            <p class="project" data-project-name="${project.title}">${project.title}  <button class="delete-project-button" data-project-id="${project.id}">del</button></p>
         `;
         sidebar.appendChild(newProject);
     }
@@ -104,7 +105,7 @@ export const displayTasks = function(tasksObject) {
     }
 };
 
-export const deleteEventListener = function() {
+export const deleteTastEvent = function() {
     const content = document.querySelector('.tasks-content');
     content.addEventListener('click', (event) => {
         if (event.target.className === 'delete-task-button') {
@@ -115,4 +116,15 @@ export const deleteEventListener = function() {
     })
 }();
 
-export { addTask, addProject, taskDialog, projectDialog, populateSidebar, selectProjectFromList };
+export const deleteProjectEvent = function() {
+    const content = document.querySelector('.sidebar-projects');
+    content.addEventListener('click', (event) => {
+        if (event.target.className === 'delete-project-button') {
+            const id = event.target.dataset.projectId;
+            console.log(id);
+            crud.deleteProject(id);
+        }
+    })
+}();
+
+export { addTask, addProject, taskDialog, projectDialog, displayProjects, selectProjectFromList };

@@ -13,23 +13,24 @@ const syncAllProjects = function() {
         const parsedItems = JSON.parse(items);
         allProjects = parsedItems
     }
-}
+};
 
 // Function to update local storage after making changes to allProjects object
 const updateLocalStorage = function() {
     localStorage.setItem('allProjects', JSON.stringify(allProjects));
-}
+};
 
 // Factory function to create new project
 function createProject (title) { 
     const tasks = {};
-    const newProject = { title, tasks };
-    allProjects[title] = newProject;
+    const id = uuid();
+    const newProject = { title, tasks, id };
+    allProjects[id] = newProject;
     updateLocalStorage();
-    dom.populateSidebar();
+    dom.displayProjects();
     dom.selectProjectFromList();
     return newProject;
-}
+};
 
 // Factory function to create new todo list, added to inbox by default
 const createTask = function(title, directory, description, dueDate, priority) {
@@ -56,11 +57,11 @@ const createTask = function(title, directory, description, dueDate, priority) {
 
     // Return the item, thereby assigning it to the created variable outside 
     return createdTask;
-}
+};
 
 export const getTasksInProject = function (projectName) {
     return allProjects[projectName].tasks;
-}
+};
 
 export const deleteTask = function(id) {
     for (const key in allProjects) {
@@ -74,6 +75,10 @@ export const deleteTask = function(id) {
             }
         }
     }
+};
+
+export const deleteProject = function(id) {
+    
 }
 
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }
