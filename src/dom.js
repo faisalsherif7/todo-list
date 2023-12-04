@@ -64,7 +64,7 @@ function populateSidebar() {
     }
 }
 
-function selectProjectFromList() {
+const selectProjectFromList = function() {
     const selectProject = document.querySelector('#select-project');
     selectProject.innerHTML = '';
     for (const project in crud.allProjects) {

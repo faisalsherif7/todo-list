@@ -27,7 +27,7 @@ function createProject (title) {
     allProjects[title] = newProject;
     updateLocalStorage();
     dom.populateSidebar();
-    selectProjectFromList();
+    dom.selectProjectFromList();
     return newProject;
 }
 
