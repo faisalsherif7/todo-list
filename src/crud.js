@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+import * as dom from './dom.js';
 
 let allProjects;
 
@@ -25,7 +26,7 @@ function createProject (title) {
     const newProject = { title, tasks };
     allProjects[title] = newProject;
     updateLocalStorage();
-    populateSidebar();
+    dom.populateSidebar();
     selectProjectFromList();
     return newProject;
 }
@@ -48,7 +49,7 @@ const createTask = function(title, directory, description, dueDate, priority) {
     const createdTask = { title, description, dueDate, priority, directory, complete, id };
 
     // Add the newly created item onto the desired projects list
-    allProjects[directory].tasks[title] = createdTask;
+    allProjects[directory].tasks[id] = createdTask;
 
     // Update local storage
     updateLocalStorage();
@@ -62,7 +63,17 @@ export const getTasksInProject = function (projectName) {
 }
 
 export const deleteTask = function(id) {
-
+    for (const key in allProjects) {
+        const project = allProjects[key];
+        const tasks = project.tasks;
+        for (const key in project.tasks) {
+            if (key === id) {
+                delete allProjects[project.title].tasks[key];
+                updateLocalStorage();
+                dom.displayTasks(tasks);
+            }
+        }
+    }
 }
 
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }

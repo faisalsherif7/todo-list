@@ -8,5 +8,3 @@ dom.selectProjectFromList();
 dom.displayTasks(crud.allProjects.Inbox.tasks);
 
 console.log(crud.allProjects);
-
-dom.deleteTask();

@@ -104,14 +104,15 @@ export const displayTasks = function(tasksObject) {
     }
 };
 
-export const deleteTask = function() {
-    const deleteTaskButton = document.querySelector('.delete-task-button');
-    deleteTaskButton.addEventListener('click', (event) => {
-        const clickedDeleteButton = event.target;
-        const id = clickedDeleteButton.dataset.taskId;
-        console.log(id);
-        crud.deleteTask(id);
+export const deleteEventListener = function() {
+    const content = document.querySelector('.tasks-content');
+    content.addEventListener('click', (event) => {
+        if (event.target.className === 'delete-task-button') {
+            const clickedDeleteButton = event.target;
+            const id = clickedDeleteButton.dataset.taskId;
+            crud.deleteTask(id);
+        }
     })
-};
+}();
 
 export { addTask, addProject, taskDialog, projectDialog, populateSidebar, selectProjectFromList };
