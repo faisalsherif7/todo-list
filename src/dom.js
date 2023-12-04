@@ -68,9 +68,10 @@ function displayProjects() {
 const selectProjectFromList = function() {
     const selectProject = document.querySelector('#select-project');
     selectProject.innerHTML = '';
-    for (const project in crud.allProjects) {
+    for (const key in crud.allProjects) {
+        const project = crud.allProjects[key];
         selectProject.innerHTML += `
-            <option value="${project}">${project}</option>
+            <option value="${project.title}">${project.title}</option>
         `;
     }
 };
