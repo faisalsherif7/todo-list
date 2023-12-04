@@ -93,15 +93,25 @@ export const displayTasks = function(tasksObject) {
         const task = tasksObject[key];
         content.innerHTML += `
             <div class="task-item">
-                <p class="task-title">${task.title}</p>
-                <p class="task-description">${task.description}</p>
-                <p class="task-priority">${task.priority}</p>
-                <p class="task-due-date">${task.dueDate}</p>
-                <p>${task.id}</p>
-                <button type="button" class="delete-task-button">Del</button>
+                <p class="task-title">Task name - ${task.title}</p>
+                <p class="task-description">Description - ${task.description}</p>
+                <p class="task-priority">Priority - ${task.priority}</p>
+                <p class="task-due-date">Due date - ${task.dueDate}</p>
+                <p>Id - ${task.id}</p>
+                <button type="button" class="delete-task-button" data-task-id="${task.id}">Del</button>
             </div>
         `;
     }
+};
+
+export const deleteTask = function() {
+    const deleteTaskButton = document.querySelector('.delete-task-button');
+    deleteTaskButton.addEventListener('click', (event) => {
+        const clickedDeleteButton = event.target;
+        const id = clickedDeleteButton.dataset.taskId;
+        console.log(id);
+        crud.deleteTask(id);
+    })
 };
 
 export { addTask, addProject, taskDialog, projectDialog, populateSidebar, selectProjectFromList };

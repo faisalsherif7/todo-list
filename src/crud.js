@@ -45,7 +45,7 @@ const createTask = function(title, directory, description, dueDate, priority) {
     const id = uuid();
 
     // Create the new to-do item
-    const createdTask = { title, description, dueDate, priority, project, complete, id };
+    const createdTask = { title, description, dueDate, priority, directory, complete, id };
 
     // Add the newly created item onto the desired projects list
     allProjects[directory].tasks[title] = createdTask;
@@ -59,6 +59,10 @@ const createTask = function(title, directory, description, dueDate, priority) {
 
 export const getTasksInProject = function (projectName) {
     return allProjects[projectName].tasks;
+}
+
+export const deleteTask = function(id) {
+
 }
 
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }
