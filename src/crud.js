@@ -2,17 +2,21 @@ import { v4 as uuid } from 'uuid';
 import * as dom from './dom.js';
 
 let allProjects;
+let inboxId;
 
 // Check if local storage contains "allProjects" and if not, initiate it with default "inbox" project
 const syncAllProjects = function() {
     const items = localStorage.getItem('allProjects');
+    let inbox;
     if (items === null) {
         allProjects = {};
-        createProject('Inbox');
+        inbox = createProject('Inbox');
     } else {
         const parsedItems = JSON.parse(items);
         allProjects = parsedItems
+        inbox = allProjects[Object.keys(allProjects)[0]];
     }
+    inboxId = inbox.id;
 };
 
 // Function to update local storage after making changes to allProjects object
@@ -78,6 +82,10 @@ export const deleteTask = function(id) {
 };
 
 export const deleteProject = function(id) {
+    if (id === inboxId) {
+        console.log('here');
+        return console.log('cannot delete inbox');
+    }
     for (const key in allProjects) {
         if (key === id) {
             delete allProjects[key];
