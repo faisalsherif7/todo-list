@@ -67,13 +67,21 @@ function displayProjects() {
 
 export const displayProjectOptions = function() {
     const selectProject = document.querySelector('#select-project');
+    const currentProject = document.querySelector('.selected-project');
     selectProject.innerHTML = '';
     for (const key in crud.allProjects) {
         const project = crud.allProjects[key];
-        selectProject.innerHTML += `
-            <option value="${project.id}">${project.title}</option>
-        `;
+        if (currentProject.dataset.projectId === key) {
+            selectProject.innerHTML += `
+                <option value="${project.id}" selected>${project.title}</option>
+            `;
+        } else {
+            selectProject.innerHTML += `
+                <option value="${project.id}">${project.title}</option>
+            `;
+        }
     }
+
 };
 
 export const switchProjects = function() {
@@ -136,6 +144,7 @@ function removeSelectedClass() {
 
 export function addSelectedClass(projectElement) {
     projectElement.classList.add('selected-project');
+    displayProjectOptions();
 };
 
 export const defaultSelectedProject = function() {
@@ -143,6 +152,7 @@ export const defaultSelectedProject = function() {
     if (currentSelection === null) {
         const inbox = document.querySelector('.project');
         inbox.classList.add('selected-project');
+        displayProjectOptions();
     }
 };
 
