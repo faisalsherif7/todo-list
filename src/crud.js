@@ -63,8 +63,8 @@ const createTask = function(title, directory, description, dueDate, priority) {
     return createdTask;
 };
 
-export const getTasksInProject = function (projectName) {
-    return allProjects[projectName].tasks;
+export const getTasksInProject = function (projectId) {
+    return allProjects[projectId].tasks;
 };
 
 export const deleteTask = function(id) {
@@ -73,7 +73,7 @@ export const deleteTask = function(id) {
         const tasks = project.tasks;
         for (const key in project.tasks) {
             if (key === id) {
-                delete allProjects[project.title].tasks[key];
+                delete allProjects[project.id].tasks[key];
                 updateLocalStorage();
                 dom.displayTasks(tasks);
             }
