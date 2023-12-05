@@ -127,3 +127,7 @@ table {
     background-color: rgb(234, 234, 234);
     cursor: pointer;
 }
+
+.selected-project {
+    background-color: rgb(241, 241, 241);
+}

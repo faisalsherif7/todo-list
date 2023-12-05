@@ -65,7 +65,7 @@ function displayProjects() {
     }
 }
 
-const selectProjectFromList = function() {
+export const displayProjectOptions = function() {
     const selectProject = document.querySelector('#select-project');
     selectProject.innerHTML = '';
     for (const key in crud.allProjects) {
@@ -80,7 +80,9 @@ export const switchProjects = function() {
     const sidebar = document.querySelector('.sidebar-projects');
     sidebar.addEventListener('click', (event) => {
         if (event.target.className === 'project') {
+            removeSelectedClass();
             let clickedProject = event.target;
+            addSelectedClass(clickedProject);
             const projectId = clickedProject.dataset.projectId;
             const tasks = crud.getTasksInProject(projectId);
             displayTasks(tasks);
@@ -93,7 +95,6 @@ export const displayTasks = function(tasksObject) {
     content.innerHTML = '';
     for (const key in tasksObject) {
         const task = tasksObject[key];
-        console.log(task);
         content.innerHTML += `
             <div class="task-item">
                 <p class="task-title">Task name - ${task.title}</p>
@@ -128,4 +129,21 @@ export const deleteProjectEvent = function() {
     })
 }();
 
-export { addTask, addProject, taskDialog, projectDialog, displayProjects, selectProjectFromList };
+function removeSelectedClass() {
+    const currentSelection = document.querySelector('.selected-project');
+    currentSelection.classList.remove('selected-project')
+};
+
+export function addSelectedClass(projectElement) {
+    projectElement.classList.add('selected-project');
+};
+
+export const defaultSelectedProject = function() {
+    const currentSelection = document.querySelector('.selected-project');
+    if (currentSelection === null) {
+        const inbox = document.querySelector('.project');
+        inbox.classList.add('selected-project');
+    }
+};
+
+export { addTask, addProject, taskDialog, projectDialog, displayProjects };

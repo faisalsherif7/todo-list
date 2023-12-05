@@ -32,7 +32,7 @@ function createProject (title) {
     allProjects[id] = newProject;
     updateLocalStorage();
     dom.displayProjects();
-    dom.selectProjectFromList();
+    dom.displayProjectOptions();
     return newProject;
 };
 
