@@ -5,6 +5,5 @@ import * as dom from './dom.js';
 crud.syncAllProjects();
 dom.displayProjects();
 dom.displayTasks(crud.allProjects[Object.keys(crud.allProjects)[0]].tasks);
-dom.defaultSelectedProject();
 
 console.log(crud.allProjects);

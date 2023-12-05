@@ -63,6 +63,7 @@ function displayProjects() {
         `;
         sidebar.appendChild(newProject);
     }
+    defaultSelectedProject();
 }
 
 export const displayProjectOptions = function() {
