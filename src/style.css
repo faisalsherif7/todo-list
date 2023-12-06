@@ -106,7 +106,6 @@ table {
 
 .sidebar-item:hover {
     background-color: var(--hover-primary);
-    cursor: pointer;
 }
 
 .project {
@@ -133,6 +132,11 @@ table {
 .delete-project-button {
     display: flex;
     align-items: center;
+    background-color: transparent;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
 }
 
 .tasks-content {
