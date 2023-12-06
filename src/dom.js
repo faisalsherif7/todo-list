@@ -57,12 +57,11 @@ function displayProjects() {
     for (const key in crud.allProjects) {
         const project = crud.allProjects[key];
         const newProject = document.createElement('div');
-        newProject.className = 'sidebar-item';
+        newProject.className = 'project';
+        newProject.setAttribute('data-project-id', `${project.id}`)
         newProject.innerHTML = `
-            <div class="project" data-project-id="${project.id}">
-                <p class="project-title">${project.title}</p>  
-                <button class="delete-project-button" data-project-id="${project.id}">del</button>
-            </div>
+            <p class="project-title">${project.title}</p>  
+            <button class="delete-project-button">del</button>
         `;
         sidebar.appendChild(newProject);
     }
@@ -146,7 +145,7 @@ export const deleteProjectEvent = function() {
     const content = document.querySelector('.sidebar-projects');
     content.addEventListener('click', (event) => {
         if (event.target.className === 'delete-project-button') {
-            const id = event.target.dataset.projectId;
+            const id = event.target.parentElement.dataset.projectId;
             crud.deleteProject(id);
         }
     })
