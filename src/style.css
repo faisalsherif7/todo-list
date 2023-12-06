@@ -77,7 +77,6 @@ table {
     height: 100vh;
     background-color: var(--primary-background);
     padding: 20px;
-    font-size: 1.3rem;
     color: white;
 }
 
@@ -94,19 +93,24 @@ table {
     background-color: var(--secondary-background);
 }
 
-.project {
+.sidebar-item {
     margin: 10px 0px;
-    padding: 7px;
+    padding: 7px 15px;
     transition: 0.2s;
-    border-radius: 5px;
+    border-radius: 7px;
+    font-size: 1.2rem;
+    height: 25px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-.project:hover {
+.sidebar-item:hover {
     background-color: var(--hover-primary);
     cursor: pointer;
+}
+
+.project {
+    justify-content: space-between;
 }
 
 .selected-project {
@@ -119,19 +123,7 @@ table {
 }
 
 .add-project {
-    margin: 10px 0px;
-    padding: 7px;
-    transition: 0.2s;
-    border-radius: 5px;
-}
-
-.add-project:hover {
-    background-color: var(--hover-primary);
-    cursor: pointer;
-}
-
-.add-project-button {
-    text-align: end;
+    justify-content: end;
 }
 
 .delete-project-svg {

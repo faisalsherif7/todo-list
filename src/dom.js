@@ -57,7 +57,7 @@ function displayProjects() {
     for (const key in crud.allProjects) {
         const project = crud.allProjects[key];
         const newProject = document.createElement('div');
-        newProject.className = 'project';
+        newProject.className = 'project sidebar-item';
         newProject.setAttribute('data-project-id', `${project.id}`)
         newProject.innerHTML = `
             <p class="project-title">${project.title}</p>  
@@ -96,11 +96,11 @@ export const switchProjects = function() {
         let clicked = 0;
         let clickedProject;
 
-        if (event.target.className === 'project') {
+        if (event.target.classList.contains('project')) {
             clickedProject = event.target;
             clicked = 1;
         }
-        if (event.target.className === 'project-title') {
+        if (event.target.classList.contains('project-title')) {
             clickedProject = event.target.parentElement;
             clicked = 1;
         }
