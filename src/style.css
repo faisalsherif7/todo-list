@@ -3,7 +3,7 @@
    License: none (public domain)
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&display=swap');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -50,9 +50,11 @@ table {
 }
 
 :root {
-    font-family: 'Roboto', sans-serif;
-    --primary-color: #1e3a8a;
-    --secondary-color: #bfdbfe;
+    font-family: 'DM Sans', sans-serif;
+
+    --primary-background: #1b1d1f;
+    --secondary-background: rgb(243, 247, 252);
+    --hover-primary: #3f4246;
     --tertiary-color: #eff6ff;
 }
 
@@ -61,7 +63,7 @@ table {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: var(--primary-background);
     color: white;
     font-size: 1.5rem;
 }
@@ -73,14 +75,16 @@ table {
 .sidebar {
     width: 220px;
     height: 100vh;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-background);
     padding: 20px;
     font-size: 1.3rem;
+    color: white;
 }
 
 .content {
     padding: 40px;
     flex-grow: 1;
+    background-color: var(--secondary-background);
 }
 
 .project {
@@ -90,16 +94,46 @@ table {
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .project:hover {
-    background-color: rgb(252, 141, 141);
+    background-color: var(--hover-primary);
     cursor: pointer;
+}
+
+.selected-project {
+    background-color: var(--hover-primary);
 }
 
 .project-title {
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.add-project {
+    margin: 10px 0px;
+    padding: 7px;
+    transition: 0.2s;
+    border-radius: 5px;
+}
+
+.add-project:hover {
+    background-color: var(--hover-primary);
+    cursor: pointer;
+}
+
+.add-project-button {
+    text-align: end;
+}
+
+.delete-project-svg {
+    fill: white;
+}
+
+.delete-project-button {
+    display: flex;
+    align-items: center;
 }
 
 .tasks-content {
@@ -135,6 +169,3 @@ table {
     cursor: pointer;
 }
 
-.selected-project {
-    background-color: rgb(241, 241, 241);
-}
