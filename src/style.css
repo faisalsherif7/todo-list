@@ -81,6 +81,13 @@ table {
     color: white;
 }
 
+.sidebar-title {
+    margin-bottom: 40px;
+    font-size: 1.7rem;
+    font-weight: 1000;
+    text-align: center;
+}
+
 .content {
     padding: 40px;
     flex-grow: 1;
