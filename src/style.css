@@ -88,11 +88,18 @@ table {
     padding: 7px;
     transition: 0.2s;
     border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .project:hover {
     background-color: rgb(252, 141, 141);
     cursor: pointer;
+}
+
+.project-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .tasks-content {

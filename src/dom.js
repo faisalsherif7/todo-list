@@ -59,7 +59,10 @@ function displayProjects() {
         const newProject = document.createElement('div');
         newProject.className = 'sidebar-item';
         newProject.innerHTML = `
-            <p class="project" data-project-id="${project.id}">${project.title}  <button class="delete-project-button" data-project-id="${project.id}">del</button></p>
+            <div class="project" data-project-id="${project.id}">
+                <p class="project-title">${project.title}</p>  
+                <button class="delete-project-button" data-project-id="${project.id}">del</button>
+            </div>
         `;
         sidebar.appendChild(newProject);
     }
@@ -88,9 +91,20 @@ export const displayProjectOptions = function() {
 export const switchProjects = function() {
     const sidebar = document.querySelector('.sidebar-projects');
     sidebar.addEventListener('click', (event) => {
+
+        let clicked = 0;
+        let clickedProject;
+
         if (event.target.className === 'project') {
+            clickedProject = event.target;
+            clicked = 1;
+        }
+        if (event.target.className === 'project-title') {
+            clickedProject = event.target.parentElement;
+            clicked = 1;
+        }
+        if (clicked === 1) {
             removeSelectedClass();
-            let clickedProject = event.target;
             addSelectedClass(clickedProject);
             const projectId = clickedProject.dataset.projectId;
             const tasks = crud.getTasksInProject(projectId);
