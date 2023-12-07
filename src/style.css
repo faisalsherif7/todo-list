@@ -133,6 +133,23 @@ p {
     fill: white;
 }
 
+.delete-task-svg {
+    fill: var(--primary-background);
+}
+
+.delete-task-button {
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.1s;
+    display: flex;
+    align-items: center;
+}
+
+.delete-task-button:hover {
+    transform: scale(1.1);
+}
+
 .delete-project-button {
     display: flex;
     align-items: center;

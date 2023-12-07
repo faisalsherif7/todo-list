@@ -83,7 +83,6 @@ export const deleteTask = function(id) {
 
 export const deleteProject = function(id) {
     if (id === inboxId) {
-        console.log('here');
         return console.log('cannot delete inbox');
     }
     for (const key in allProjects) {
