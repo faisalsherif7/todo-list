@@ -39,13 +39,13 @@ const taskDialog = function() {
 }();
 
 const projectDialog = function() {
-    const addTaskButton = document.querySelector('.add-project-button');
+    const addTaskButton = document.querySelector('.add-project');
     const closeDialogButton = document.querySelector('.close-project-dialog')
     const dialog = document.querySelector('.add-project-dialog');
     addTaskButton.addEventListener("click", () => {
         dialog.showModal();
     });
-    closeDialogButton.addEventListener("click", () => {
+    closeDialogButton.addEventListener("click", (event) => {
         dialog.close();
     })
 }();

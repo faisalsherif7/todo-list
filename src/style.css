@@ -110,6 +110,7 @@ p {
 
 .sidebar-item:hover {
     background-color: var(--hover-primary);
+    cursor: pointer;
 }
 
 .project {
@@ -129,6 +130,10 @@ p {
     justify-content: end;
 }
 
+.add-project-button {
+    cursor: pointer;
+}
+
 .delete-project-svg {
     fill: white;
 }
@@ -145,6 +150,10 @@ p {
     margin: 0px;
     padding: 0px;
     cursor: pointer;
+}
+
+.delete-project-button:hover {
+    transform: scale(1.1);
 }
 
 .tasks-content {
