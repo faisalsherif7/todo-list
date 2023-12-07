@@ -92,9 +92,15 @@ p {
 }
 
 .content {
-    padding: 40px;
+    padding: 40px 80px;
     flex-grow: 1;
     background-color: var(--secondary-background);
+}
+
+.content-title {
+    font-size: 2rem;
+    font-weight: 1000;
+    margin-bottom: 30px;
 }
 
 .sidebar-item {

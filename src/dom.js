@@ -117,6 +117,15 @@ export const switchProjects = function() {
 export const displayTasks = function(tasksObject) {
     const content = document.querySelector('.tasks-content');
     content.innerHTML = '';
+
+    const currentProjectElement = document.querySelector('.selected-project');
+    const title = crud.allProjects[currentProjectElement.dataset.projectId].title;
+    content.innerHTML = `
+        <div class="content-title">
+            <p>${title}</p>
+        </div>
+    `
+
     for (const key in tasksObject) {
         const task = tasksObject[key];
         content.innerHTML += `
@@ -191,7 +200,7 @@ export const editTaskEvent = function() {
         }
 
     });
-    
+
 }();
 
 export { addTask, addProject, taskDialog, projectDialog, displayProjects };
