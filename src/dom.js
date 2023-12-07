@@ -62,7 +62,7 @@ function displayProjects() {
         newProject.innerHTML = `
             <p class="project-title">${project.title}</p>  
             <button class="delete-project-button">
-            <svg class="delete-project-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path  class="delete-project-svg-path" d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"/></svg>
+                <svg class="delete-project-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path  class="delete-project-svg-path" d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"/></svg>
             </button>
         `;
         sidebar.appendChild(newProject);
@@ -125,9 +125,14 @@ export const displayTasks = function(tasksObject) {
                 <p class="task-description">Description - ${task.description}</p>
                 <p class="task-priority">Priority - ${task.priority}</p>
                 <p class="task-due-date">Due date - ${task.dueDate}</p>
-                <button type="button" class="delete-task-button">
-                    <svg class="delete-task-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path  class="delete-project-svg-path" d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"/></svg>
-                </button>
+                <div class="action-buttons-container">
+                    <div class="action-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                    </div>
+                    <div class="action-button delete-task-button">    
+                            <svg class="delete-task-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path  class="delete-project-svg-path" d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"/></svg>
+                    </div>
+                </div>
             </div>
         `;
     }
@@ -137,8 +142,8 @@ export const deleteTaskEvent = function() {
     const content = document.querySelector('.tasks-content');
     content.addEventListener('click', (event) => {
         if (event.target.closest('.delete-task-button')) {
-            const clickedDeleteButton = event.target.closest('.delete-task-button');
-            const id = clickedDeleteButton.parentElement.dataset.taskId;
+            const clickedDeleteButton = event.target.closest('[data-task-id]');
+            const id = clickedDeleteButton.dataset.taskId;
             crud.deleteTask(id);
         }
     })
@@ -148,7 +153,7 @@ export const deleteProjectEvent = function() {
     const content = document.querySelector('.sidebar-projects');
     content.addEventListener('click', (event) => {
         if (event.target.closest('.delete-project-button')) {
-            const id = event.target.closest('.delete-project-button').parentElement.dataset.projectId;
+            const id = event.target.closest('[data-project-id]').dataset.projectId;
             crud.deleteProject(id);
         }
     })
