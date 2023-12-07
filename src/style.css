@@ -49,6 +49,10 @@ table {
 	border-spacing: 0;
 }
 
+p {
+    cursor: default;
+}
+
 :root {
     font-family: 'DM Sans', sans-serif;
 
@@ -147,9 +151,18 @@ table {
 }
 
 .task-item {
-    border: 1px solid grey;
-    height: 90px;
-    padding: 10px 10px;
+    background-color: white;
+    box-shadow: 0px 2px 2px #dfe5ec;
+    border-radius: 7px;
+    border: 1px solid rgb(231, 231, 231);
+    padding: 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-title {
+    font-weight: bold;
 }
 
 .add-task-div {
@@ -161,8 +174,6 @@ table {
     height: 30px;
     background-color: white;
     border: 0px;
-    border-top: 1px solid grey;
-    border-bottom: 1px solid grey;
     text-align: start;
     transition: 0.2s;
 }

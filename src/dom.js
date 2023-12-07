@@ -125,7 +125,6 @@ export const displayTasks = function(tasksObject) {
                 <p class="task-description">Description - ${task.description}</p>
                 <p class="task-priority">Priority - ${task.priority}</p>
                 <p class="task-due-date">Due date - ${task.dueDate}</p>
-                <p>Id - ${task.id}</p>
                 <button type="button" class="delete-task-button" data-task-id="${task.id}">Del</button>
             </div>
         `;
