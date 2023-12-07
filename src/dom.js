@@ -17,10 +17,38 @@ const addTask = function() {
 }();
 
 const addProject = function() {
-    document.querySelector('.submit-project-form').addEventListener('click', function (event) {
-        event.preventDefault();
-        const title = document.querySelector('#project-title').value;
-        crud.createProject(title);
+    document.querySelector('.sidebar').addEventListener('click', function (event) {
+        if (event.target.className === 'submit-project-form') {
+            const title = document.querySelector('#project-title').value;
+            crud.createProject(title);
+            const add = document.querySelector('.add-project-form-container');
+            add.innerHTML = `<p class="add-project-button">+ Add Project</p>`;
+            add.classList.remove('add-project-form-container');
+            add.classList.add('add-project');
+        }
+        if (event.target.className === 'cancel-add-project-form') {
+            const add = document.querySelector('.add-project-form-container');
+            add.innerHTML = `<p class="add-project-button">+ Add Project</p>`;
+            add.classList.remove('add-project-form-container');
+            add.classList.add('add-project');
+        }
+        if (event.target.closest('.add-project')) {
+            const trigger = event.target.closest('.add-project');
+            trigger.innerHTML = '';
+            trigger.innerHTML = `
+            <div class="add-project-form">
+            <div class="add-project-form-input">
+            <input type="text" name="project-title" id="project-title" placeholder="add project">
+            </div>
+            <div class="add-project-form-buttons">
+            <button type="button" class="submit-project-form">Submit</button>
+            <button type="button" class="cancel-add-project-form">Cancel</button>
+            </div>
+            </div>
+            `
+            trigger.classList.remove('add-project');
+            trigger.classList.add('add-project-form-container')
+        }
     })
 }();
 
@@ -38,15 +66,9 @@ const taskDialog = function() {
     })
 }();
 
-const projectDialog = function() {
-    const addTaskButton = document.querySelector('.add-project');
-    const closeDialogButton = document.querySelector('.close-project-dialog')
-    const dialog = document.querySelector('.add-project-dialog');
-    addTaskButton.addEventListener("click", () => {
-        dialog.showModal();
-    });
-    closeDialogButton.addEventListener("click", (event) => {
-        dialog.close();
+export const addProjectInput = function() {
+    document.querySelector('.sidebar').addEventListener('click', (event) => {
+        
     })
 }();
 
@@ -203,4 +225,4 @@ export const editTaskEvent = function() {
 
 }();
 
-export { addTask, addProject, taskDialog, projectDialog, displayProjects };
+export { addTask, addProject, taskDialog, displayProjects };
