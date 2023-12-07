@@ -58,8 +58,10 @@ p {
 
     --primary-background: #1b1d1f;
     --secondary-background: rgb(243, 247, 252);
+    --tertiary-background: #e7f0f9;
     --hover-primary: #3f4246;
     --tertiary-color: #eff6ff;
+    --border-radius-value: 7px;
 }
 
 .navbar {
@@ -107,7 +109,7 @@ p {
     margin: 10px 0px;
     padding: 7px 15px;
     transition: 0.2s;
-    border-radius: 7px;
+    border-radius: var(--border-radius-value);
     font-size: 1.2rem;
     height: 25px;
     display: flex;
@@ -172,7 +174,7 @@ p {
 .task-item {
     background-color: white;
     box-shadow: 0px 2px 2px #dfe5ec;
-    border-radius: 7px;
+    border-radius: var(--border-radius-value);
     border: 1px solid rgb(231, 231, 231);
     padding: 15px 15px;
     display: flex;
