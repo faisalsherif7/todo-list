@@ -138,8 +138,8 @@ export const displayTasks = function(tasksObject) {
     const currentProjectElement = document.querySelector('.selected-project');
     const title = crud.allProjects[currentProjectElement.dataset.projectId].title;
     content.innerHTML = `
-        <div class="content-title">
-            <p>${title}</p>
+        <div class="content-title-div">
+            <p class="content-title">${title}</p>
         </div>
     `
 
@@ -212,8 +212,37 @@ export const editTaskEvent = function() {
 
         if (event.target.closest('.edit-task-button')) {
             const clickedTask = event.target.closest('[data-task-id]');
-            const id = clickedTask.dataset.taskId;
-            console.log('edit!')
+            const taskId = clickedTask.dataset.taskId;
+            const projectId = document.querySelector('.selected-project').dataset.projectId;
+
+            clickedTask.classList.remove('task-item');
+            clickedTask.classList.add('edit-task-item');
+            clickedTask.innerHTML = `
+                <div class="edit-task-title-container">
+                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].title}>
+                </div>
+                <div class="edit-task-description-container">
+                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].description}>
+                </div>
+                <div class="edit-task'priority-container">
+                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].priority}>
+                </div>
+                <div class="edit-task-due-date-container">
+                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].dueDate}>
+                </div>
+                <div class="edit-task-action-buttons">
+                    <button type="button" class="edit-task-save-button">Save</button>
+                    <button type="button" class="edit-task-cancel-button">Cancel</button>
+                </div>
+            `;
+        }
+
+        if (event.target.className === 'edit-task-cancel-button') {
+            const clickedTask = event.target.closest('[data-task-id]');
+            const taskId = clickedTask.dataset.taskId;
+            const projectId = document.querySelector('.selected-project').dataset.projectId;
+            clickedTask.innerHTML = '';
+            displayTasks(crud.allProjects[projectId].tasks);
         }
 
     });
