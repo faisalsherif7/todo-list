@@ -251,6 +251,26 @@ p {
     font-weight: bold;
 }
 
+[class^="task-priority-"] {
+    padding: 5px 10px;
+    border-radius: var(--border-radius-value);
+}
+
+.task-priority-High {
+    border: 2px solid rgb(209, 69, 59);
+    background-color: rgb(246, 218, 216);
+}
+
+.task-priority-Medium {
+    border: 2px solid rgb(235, 137, 9);
+    background-color: rgb(251, 231, 206);
+}
+
+.task-priority-Low {
+    border: 2px solid rgb(36, 111, 224);
+    background-color: rgb(211, 226, 249);
+}
+
 .add-task-div {
     margin-top: 10px;
     display: flex;
