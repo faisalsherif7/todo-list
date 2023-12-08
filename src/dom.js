@@ -24,16 +24,16 @@ const addProject = function() {
             const add = document.querySelector('.add-project-form-container');
             add.innerHTML = `<p class="add-project-button">+ Add Project</p>`;
             add.classList.remove('add-project-form-container');
-            add.classList.add('add-project');
+            add.classList.add('add-project-container');
         }
         if (event.target.className === 'cancel-add-project-form') {
             const add = document.querySelector('.add-project-form-container');
             add.innerHTML = `<p class="add-project-button">+ Add Project</p>`;
             add.classList.remove('add-project-form-container');
-            add.classList.add('add-project');
+            add.classList.add('add-project-container');
         }
-        if (event.target.closest('.add-project')) {
-            const trigger = event.target.closest('.add-project');
+        if (event.target.closest('.add-project-container')) {
+            const trigger = event.target.closest('.add-project-container');
             trigger.innerHTML = '';
             trigger.innerHTML = `
             <div class="add-project-form">
@@ -46,7 +46,7 @@ const addProject = function() {
             </div>
             </div>
             `
-            trigger.classList.remove('add-project');
+            trigger.classList.remove('add-project-container');
             trigger.classList.add('add-project-form-container')
         }
     })
