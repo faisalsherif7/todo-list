@@ -234,9 +234,10 @@ p {
     border-radius: var(--border-radius-value);
     border: 1px solid rgb(231, 231, 231);
     padding: 15px 15px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 100px 80px 50px;
     align-items: center;
+    gap: 10px;
 }
 
 .edit-task-item {
@@ -249,11 +250,14 @@ p {
 
 .task-title {
     font-weight: bold;
+    flex-grow: 1;
 }
 
 [class^="task-priority-"] {
     padding: 5px 10px;
     border-radius: var(--border-radius-value);
+    justify-self: stretch;
+    text-align: center;
 }
 
 .task-priority-High {
