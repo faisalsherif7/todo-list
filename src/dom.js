@@ -9,7 +9,7 @@ const addTask = function() {
         const description = document.querySelector('#description').value;
         const dueDate = document.querySelector('#due-date').value;
         const priority = document.querySelector('#priority').value;
-        const project = document.querySelector('#project-selector').value;
+        const project = document.querySelector('#add-task-project-selector').value;
         
         crud.createTask(title, project, description, dueDate, priority);
         displayTasks(crud.allProjects[project].tasks);
@@ -88,7 +88,7 @@ function displayProjects() {
 }
 
 export const addProjectSelector = function() {
-    const selectProject = document.querySelector('#project-selector');
+    const selectProject = document.querySelector('.project-selector');
     const currentProject = document.querySelector('.selected-project');
     selectProject.innerHTML = '';
     for (const key in crud.allProjects) {
@@ -221,7 +221,7 @@ export const editTaskEvent = function() {
                 </div>
 
                 <div class="edit-task-project-container">
-                    <select class="project-selector" name="project-selector" id="project-selector"></select>    
+                    <select class="project-selector" name="edit-project-selector" id="edit-project-selector"></select>    
                 </div>
 
                 <div class="edit-task-description-container">
