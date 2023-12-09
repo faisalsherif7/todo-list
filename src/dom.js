@@ -103,7 +103,6 @@ export const addProjectSelector = function() {
             `;
         }
     }
-
 };
 
 export const switchProjects = function() {
@@ -222,7 +221,7 @@ export const editTaskEvent = function() {
                 </div>
 
                 <div class="edit-task-project-container">
-                    project
+                    <select class="project-selector" name="project-selector" id="project-selector"></select>    
                 </div>
 
                 <div class="edit-task-description-container">
@@ -250,6 +249,7 @@ export const editTaskEvent = function() {
 
             const currentPriorityOption = document.querySelector(`#edit-priority-${taskId} option[value="${crud.allProjects[projectId].tasks[taskId].priority}"]`);
             currentPriorityOption.selected = true;
+            addProjectSelector();
         }
 
         if (event.target.className === 'edit-task-cancel-button') {
