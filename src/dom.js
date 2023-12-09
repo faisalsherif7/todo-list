@@ -9,7 +9,7 @@ const addTask = function() {
         const description = document.querySelector('#description').value;
         const dueDate = document.querySelector('#due-date').value;
         const priority = document.querySelector('#priority').value;
-        const project = document.querySelector('#select-project').value;
+        const project = document.querySelector('#project-selector').value;
         
         crud.createTask(title, project, description, dueDate, priority);
         displayTasks(crud.allProjects[project].tasks);
@@ -87,8 +87,8 @@ function displayProjects() {
     defaultSelectedProject();
 }
 
-export const displayProjectOptions = function() {
-    const selectProject = document.querySelector('#select-project');
+export const addProjectSelector = function() {
+    const selectProject = document.querySelector('#project-selector');
     const currentProject = document.querySelector('.selected-project');
     selectProject.innerHTML = '';
     for (const key in crud.allProjects) {
@@ -192,7 +192,7 @@ function removeSelectedClass() {
 
 export function addSelectedClass(projectElement) {
     projectElement.classList.add('selected-project');
-    displayProjectOptions();
+    addProjectSelector();
 };
 
 export const defaultSelectedProject = function() {
@@ -200,7 +200,7 @@ export const defaultSelectedProject = function() {
     if (currentSelection === null) {
         const inbox = document.querySelector('.project');
         inbox.classList.add('selected-project');
-        displayProjectOptions();
+        addProjectSelector();
     }
 };
 
@@ -220,22 +220,28 @@ export const editTaskEvent = function() {
                 <div class="edit-task-title-container">
                     <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].title}>
                 </div>
+
                 <div class="edit-task-project-container">
                     project
                 </div>
+
                 <div class="edit-task-description-container">
                     <textarea class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].description}></textarea>
                 </div>
-                <div class="edit-task-priority-container">
-                    <select name="edit-priority-${taskId}" id="edit-priority-${taskId}">
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Low">Low</option>
-                    </select>
+
+                <div class="edit-task-priority-and-due-date-container">
+                    <div class="edit-task-due-date-container">
+                        <input type="date" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" value=${crud.allProjects[projectId].tasks[taskId].dueDate}>
+                    </div>
+                    <div class="edit-task-priority-container">
+                        <select class="priority-selector" name="edit-priority-${taskId}" id="edit-priority-${taskId}">
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="edit-task-due-date-container">
-                    <input type="date" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" value=${crud.allProjects[projectId].tasks[taskId].dueDate}>
-                </div>
+                
                 <div class="edit-task-action-buttons">
                     <button type="button" class="edit-task-save-button">Save</button>
                     <button type="button" class="edit-task-cancel-button">Cancel</button>

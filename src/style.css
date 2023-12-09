@@ -275,9 +275,29 @@ p {
     width: 100px;
 }
 
-.edit-task-priority-container {
+.edit-task-priority-and-due-date-container {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
+    display: flex;
+    gap: 10px;
+}
+
+input[type="date"] {
+    padding: 7px 15px;
+    border-radius: var(--border-radius-value);
+    border: 0px;
+    outline: 0;
+    background-color: var(--tertiary-background);
+}
+
+.priority-selector,
+.project-selector {
+    padding: 7px 15px;
+    border: 0;
+    outline: 0;
+    border-radius: var(--border-radius-value);
+    background-color: var(--tertiary-background);
+    height: 100%;
 }
 
 .edit-task-action-buttons {
@@ -299,11 +319,6 @@ p {
 
 .edit-task-action-buttons button:hover {
     transform: scale(1.1);
-}
-
-.edit-task-due-date-container {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
 }
 
 .edit-task-title-container input {
