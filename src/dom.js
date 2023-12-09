@@ -221,13 +221,18 @@ export const editTaskEvent = function() {
                     <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].title}>
                 </div>
                 <div class="edit-task-description-container">
-                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].description}>
+                    <textarea class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].description}></textarea>
                 </div>
-                <div class="edit-task'priority-container">
+                <div class="edit-task-priority-container">
+                    <select name="edit-priority" id="priority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
                     <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].priority}>
                 </div>
                 <div class="edit-task-due-date-container">
-                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].dueDate}>
+                    <input type="date" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" value=${crud.allProjects[projectId].tasks[taskId].dueDate}>
                 </div>
                 <div class="edit-task-action-buttons">
                     <button type="button" class="edit-task-save-button">Save</button>
