@@ -220,16 +220,18 @@ export const editTaskEvent = function() {
                 <div class="edit-task-title-container">
                     <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].title}>
                 </div>
+                <div class="edit-task-project-container">
+                    project
+                </div>
                 <div class="edit-task-description-container">
                     <textarea class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].description}></textarea>
                 </div>
                 <div class="edit-task-priority-container">
-                    <select name="edit-priority" id="priority">
+                    <select name="edit-priority-${taskId}" id="edit-priority-${taskId}">
                         <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
                     </select>
-                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].priority}>
                 </div>
                 <div class="edit-task-due-date-container">
                     <input type="date" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" value=${crud.allProjects[projectId].tasks[taskId].dueDate}>
@@ -239,6 +241,9 @@ export const editTaskEvent = function() {
                     <button type="button" class="edit-task-cancel-button">Cancel</button>
                 </div>
             `;
+
+            const currentPriorityOption = document.querySelector(`#edit-priority-${taskId} option[value="${crud.allProjects[projectId].tasks[taskId].priority}"]`);
+            currentPriorityOption.selected = true;
         }
 
         if (event.target.className === 'edit-task-cancel-button') {
