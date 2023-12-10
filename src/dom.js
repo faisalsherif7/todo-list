@@ -149,6 +149,7 @@ export const displayTasks = function(tasksObject) {
         const task = tasksObject[key];
         content.innerHTML += `
             <div class="task-item" data-task-id="${task.id}">
+                <p class="task-completed"><input type="checkbox"></p>
                 <p class="task-title">${task.title}</p>
                 <p class="task-due-date">${task.dueDate}</p>
                 <p class="task-priority-${task.priority}">${task.priority}</p>
