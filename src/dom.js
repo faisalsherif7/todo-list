@@ -2,17 +2,19 @@ import * as crud from "./crud";
 
 // Accept form input and create new task
 const addTask = function() {
-    document.querySelector('.submit-task-form').addEventListener('click', function (event) {
-        event.preventDefault();
-        
-        const title = document.querySelector('#title').value;
-        const description = document.querySelector('#description').value;
-        const dueDate = document.querySelector('#due-date').value;
-        const priority = document.querySelector('#priority').value;
-        const project = document.querySelector('#add-task-project-selector').value;
-        
-        crud.createTask(title, project, description, dueDate, priority);
-        displayTasks(crud.allProjects[project].tasks);
+    document.querySelector('.content').addEventListener('click', (event) => {
+        if (event.target.className === 'submit-task-form') {
+            const title = document.querySelector('#title').value;
+            const description = document.querySelector('#description').value;
+            const dueDate = document.querySelector('#due-date').value;
+            const priority = document.querySelector('#priority').value;
+            const project = document.querySelector('#add-task-project-selector').value;
+            
+            crud.createTask(title, project, description, dueDate, priority);
+            displayTasks(crud.allProjects[project].tasks);
+
+            document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
+        }
     })
 }();
 
@@ -54,18 +56,33 @@ function displayAddProjectButton() {
     add.classList.add('sidebar-item');
 };
 
+const addTaskEvents = function() {
 
-// Dialog functionality
-const taskDialog = function() {
-    const addTaskButton = document.querySelector('.add-task-button');
-    const closeDialogButton = document.querySelector('.close-task-dialog')
-    const dialog = document.querySelector('.add-task-dialog');
-    addTaskButton.addEventListener("click", () => {
-        dialog.showModal();
-    });
-    closeDialogButton.addEventListener("click", () => {
-        dialog.close();
+    document.querySelector('.content').addEventListener('click', (event) => {
+        if (event.target.className === 'add-task-button') {
+            document.querySelector('.add-task-div').innerHTML = `
+            <input type="text" name="title" id="title" placeholder="title">
+            <input type="text" name="description" id="description" placeholder="description">
+            <input type="date" name="due-date" id="due-date" placeholder="due date">
+            <select class="priority-selector" name="priority" id="priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low" selected>Low</option>
+            </select>
+            <select class="project-selector" name="add-task-project-selector" id="add-task-project-selector"></select>
+            <button type="button" class="submit-task-form">Submit</button>
+            <button type="button" class="close-task-dialog">Close</button>
+        `;
+        addProjectSelector();
+        }
     })
+
+    document.querySelector('.add-task-div').addEventListener('click', (event) => {
+        if (event.target.className === 'close-task-dialog') {
+            document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
+        }
+    })
+
 }();
 
 function displayProjects() {
