@@ -88,9 +88,11 @@ function displayProjects() {
 }
 
 export const addProjectSelector = function() {
-    const selectProject = document.querySelector('.project-selector');
+    const selectProjects = document.querySelectorAll('.project-selector');
     const currentProject = document.querySelector('.selected-project');
-    selectProject.innerHTML = '';
+
+    selectProjects.forEach((selectProject) => {
+        selectProject.innerHTML = '';
     for (const key in crud.allProjects) {
         const project = crud.allProjects[key];
         if (currentProject.dataset.projectId === key) {
@@ -103,6 +105,7 @@ export const addProjectSelector = function() {
             `;
         }
     }
+    })    
 };
 
 export const switchProjects = function() {
@@ -209,9 +212,11 @@ export const editTaskEvent = function() {
     content.addEventListener('click', (event) => {
 
         if (event.target.closest('.edit-task-button')) {
-            const clickedTask = event.target.closest('[data-task-id]');
-            const taskId = clickedTask.dataset.taskId;
+            const taskId = event.target.closest('[data-task-id]').dataset.taskId;
             const projectId = document.querySelector('.selected-project').dataset.projectId;
+            displayTasks(crud.allProjects[projectId].tasks);
+            
+            const clickedTask = document.querySelector(`[data-task-id="${taskId}"]`);
 
             clickedTask.classList.remove('task-item');
             clickedTask.classList.add('edit-task-item');
@@ -251,17 +256,16 @@ export const editTaskEvent = function() {
             currentPriorityOption.selected = true;
             addProjectSelector();
         }
+    });
+}();
 
+const cancelEditTask = function() {
+    document.querySelector('.tasks-content').addEventListener('click', (event) => {
         if (event.target.className === 'edit-task-cancel-button') {
-            const clickedTask = event.target.closest('[data-task-id]');
-            const taskId = clickedTask.dataset.taskId;
             const projectId = document.querySelector('.selected-project').dataset.projectId;
-            clickedTask.innerHTML = '';
             displayTasks(crud.allProjects[projectId].tasks);
         }
-
-    });
-
+    })
 }();
 
 export const editTask = function() {
