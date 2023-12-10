@@ -217,7 +217,7 @@ export const editTaskEvent = function() {
             clickedTask.classList.add('edit-task-item');
             clickedTask.innerHTML = `
                 <div class="edit-task-title-container">
-                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].title}>
+                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" value=${crud.allProjects[projectId].tasks[taskId].title}>
                 </div>
 
                 <div class="edit-task-project-container">
@@ -225,7 +225,7 @@ export const editTaskEvent = function() {
                 </div>
 
                 <div class="edit-task-description-container">
-                    <textarea class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" placeholder=${crud.allProjects[projectId].tasks[taskId].description}></textarea>
+                    <textarea class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input">${crud.allProjects[projectId].tasks[taskId].description}</textarea>
                 </div>
 
                 <div class="edit-task-priority-and-due-date-container">
@@ -262,6 +262,15 @@ export const editTaskEvent = function() {
 
     });
 
+}();
+
+export const editTask = function() {
+    const content = document.querySelector('.tasks-content');
+    content.addEventListener('click', (event) => {
+        if (event.target.className === 'edit-task-save-button') {
+            const id = event.target.closest('[data-task-id]').dataset.taskId;
+        }
+    })
 }();
 
 export { addTask, taskDialog, displayProjects };
