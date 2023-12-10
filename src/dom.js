@@ -295,4 +295,4 @@ export const editTask = function() {
     })
 }();
 
-export { addTask, taskDialog, displayProjects };
+export { addTask, displayProjects };
