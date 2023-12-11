@@ -219,8 +219,17 @@ export const deleteProjectEvent = function() {
     const content = document.querySelector('.sidebar-projects');
     content.addEventListener('click', (event) => {
         if (event.target.closest('.delete-project-button')) {
+
+            const currentProject = document.querySelector('.selected-project').dataset.projectId;
             const id = event.target.closest('[data-project-id]').dataset.projectId;
             crud.deleteProject(id);
+            displayProjects();
+            
+            if (currentProject != id) {
+                removeSelectedClass();
+                addSelectedClass(document.querySelector(`[data-project-id="${currentProject}"]`));
+            }
+            
             displayTasks();
         }
     })

@@ -88,7 +88,6 @@ export const deleteProject = function(id) {
         if (key === id) {
             delete allProjects[key];
             updateLocalStorage();
-            dom.displayProjects();
         }
     }
 };
