@@ -12,8 +12,6 @@ const addTask = function() {
             
             crud.createTask(title, project, description, dueDate, priority);
             displayTasks(crud.allProjects[project].tasks);
-
-            document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
         }
     })
 }();
@@ -193,6 +191,8 @@ export const displayTasks = function(tasksObject) {
             </div>
         `;
     }
+
+    document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
 };
 
 export const deleteTaskEvent = function() {
@@ -242,8 +242,6 @@ export const editTaskEvent = function() {
     content.addEventListener('click', (event) => {
 
         if (event.target.closest('.edit-task-button')) {
-
-            document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
 
             const taskId = event.target.closest('[data-task-id]').dataset.taskId;
             const projectId = document.querySelector('.selected-project').dataset.projectId;
