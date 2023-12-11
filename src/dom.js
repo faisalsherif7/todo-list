@@ -11,7 +11,7 @@ const addTask = function() {
             const project = document.querySelector('#add-task-project-selector').value;
             
             crud.createTask(title, project, description, dueDate, priority);
-            displayTasks(crud.allProjects[project].tasks);
+            displayTasks();
         }
     })
 }();
@@ -58,6 +58,7 @@ const addTaskEvents = function() {
 
     document.querySelector('.content').addEventListener('click', (event) => {
         if (event.target.className === 'add-task-button') {
+            displayTasks();
             document.querySelector('.add-task-div').innerHTML = `
             <div class="edit-task-item add-task-item">
                 <div class="edit-task-title-container">
@@ -95,7 +96,7 @@ const addTaskEvents = function() {
 
 }();
 
-function displayProjects() {
+export function displayProjects() {
     const sidebar = document.querySelector('.sidebar-projects');
     sidebar.innerHTML = '';
     for (const key in crud.allProjects) {
@@ -153,25 +154,23 @@ export const switchProjects = function() {
         if (clicked === 1) {
             removeSelectedClass();
             addSelectedClass(clickedProject);
-            const projectId = clickedProject.dataset.projectId;
-            const tasks = crud.getTasksInProject(projectId);
-            displayTasks(tasks);
+            displayTasks();
         }
     })
 }();
 
-export const displayTasks = function(tasksObject) {
+export const displayTasks = function() {
     const content = document.querySelector('.tasks-content');
-    content.innerHTML = '';
 
-    const currentProjectElement = document.querySelector('.selected-project');
-    const title = crud.allProjects[currentProjectElement.dataset.projectId].title;
+    const projectId = document.querySelector('.selected-project').dataset.projectId;
+    const title = crud.allProjects[projectId].title;
     content.innerHTML = `
         <div class="content-title-div">
             <p class="content-title">${title}</p>
         </div>
     `
 
+    const tasksObject = crud.allProjects[projectId].tasks
     for (const key in tasksObject) {
         const task = tasksObject[key];
         content.innerHTML += `
@@ -203,6 +202,7 @@ export const deleteTaskEvent = function() {
             const clickedTask = event.target.closest('[data-task-id]');
             const id = clickedTask.dataset.taskId;
             crud.deleteTask(id);
+            displayTasks();
         }
     })
 }();
@@ -243,10 +243,10 @@ export const editTaskEvent = function() {
 
         if (event.target.closest('.edit-task-button')) {
 
-            const taskId = event.target.closest('[data-task-id]').dataset.taskId;
-            const projectId = document.querySelector('.selected-project').dataset.projectId;
-            displayTasks(crud.allProjects[projectId].tasks);
+            displayTasks();
             
+            const projectId = document.querySelector('.selected-project').dataset.projectId;
+            const taskId = event.target.closest('[data-task-id]').dataset.taskId;
             const clickedTask = document.querySelector(`[data-task-id="${taskId}"]`);
 
             clickedTask.classList.remove('task-item');
@@ -293,8 +293,7 @@ export const editTaskEvent = function() {
 const cancelEditTask = function() {
     document.querySelector('.tasks-content').addEventListener('click', (event) => {
         if (event.target.className === 'edit-task-cancel-button') {
-            const projectId = document.querySelector('.selected-project').dataset.projectId;
-            displayTasks(crud.allProjects[projectId].tasks);
+            displayTasks();
         }
     })
 }();
@@ -308,4 +307,4 @@ export const editTask = function() {
     })
 }();
 
-export { addTask, displayProjects };
+export { addTask };

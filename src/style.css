@@ -77,11 +77,11 @@ p {
 
 .container {
     display: flex;
+    min-height: 100vh;
 }
 
 .sidebar {
     width: 220px;
-    height: 100vh;
     background-color: var(--primary-background);
     padding: 20px;
     color: white;

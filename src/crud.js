@@ -75,7 +75,6 @@ export const deleteTask = function(id) {
             if (key === id) {
                 delete allProjects[project.id].tasks[key];
                 updateLocalStorage();
-                dom.displayTasks(tasks);
             }
         }
     }
