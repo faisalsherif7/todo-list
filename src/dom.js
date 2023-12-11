@@ -59,7 +59,8 @@ const addTaskEvents = function() {
     document.querySelector('.content').addEventListener('click', (event) => {
         if (event.target.className === 'add-task-button') {
             displayTasks();
-            document.querySelector('.add-task-div').innerHTML = `
+            const addTaskDiv = document.querySelector('.add-task-div');
+            addTaskDiv.innerHTML = `
             <div class="edit-task-item add-task-item">
                 <div class="edit-task-title-container">
                     <input type="text" name="title" id="title" placeholder="Add title">
@@ -85,6 +86,7 @@ const addTaskEvents = function() {
             </div>
         `;
         addProjectSelector();
+        addTaskDiv.scrollIntoView({ behavior: "smooth" });
         }
     })
 
