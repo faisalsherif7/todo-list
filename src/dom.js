@@ -22,6 +22,11 @@ const addProjectEvents = function() {
             const title = document.querySelector('#project-title').value;
             crud.createProject(title);
             displayAddProjectButton();
+            
+            const newlyCreatedProject = document.querySelector('.project:last-child');
+            removeSelectedClass();
+            addSelectedClass(newlyCreatedProject);
+
             displayTasks();
         }
         if (event.target.className === 'cancel-add-project-form') {
@@ -216,6 +221,7 @@ export const deleteProjectEvent = function() {
         if (event.target.closest('.delete-project-button')) {
             const id = event.target.closest('[data-project-id]').dataset.projectId;
             crud.deleteProject(id);
+            displayTasks();
         }
     })
 }();
