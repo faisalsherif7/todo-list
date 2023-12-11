@@ -391,6 +391,10 @@ input[type="date"] {
     color: white;
 }
 
+.add-task-item {
+    width: 100%;
+}
+
 .add-task-button:hover {
     background-color: var(--hover-primary);
     cursor: pointer;

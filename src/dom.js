@@ -3,7 +3,7 @@ import * as crud from "./crud";
 // Accept form input and create new task
 const addTask = function() {
     document.querySelector('.content').addEventListener('click', (event) => {
-        if (event.target.className === 'submit-task-form') {
+        if (event.target.classList.contains('submit-task-form')) {
             const title = document.querySelector('#title').value;
             const description = document.querySelector('#description').value;
             const dueDate = document.querySelector('#due-date').value;
@@ -61,24 +61,36 @@ const addTaskEvents = function() {
     document.querySelector('.content').addEventListener('click', (event) => {
         if (event.target.className === 'add-task-button') {
             document.querySelector('.add-task-div').innerHTML = `
-            <input type="text" name="title" id="title" placeholder="title">
-            <input type="text" name="description" id="description" placeholder="description">
-            <input type="date" name="due-date" id="due-date" placeholder="due date">
-            <select class="priority-selector" name="priority" id="priority">
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low" selected>Low</option>
-            </select>
-            <select class="project-selector" name="add-task-project-selector" id="add-task-project-selector"></select>
-            <button type="button" class="submit-task-form">Submit</button>
-            <button type="button" class="close-task-dialog">Close</button>
+            <div class="edit-task-item add-task-item">
+                <div class="edit-task-title-container">
+                    <input type="text" name="title" id="title" placeholder="Add title">
+                </div>
+                <div class="edit-task-description-container">
+                    <textarea class="edit-task-description-input" id="description" name="description" placeholder="Add description"></textarea>
+                </div>
+                <div class="edit-task-priority-and-due-date-container">
+                    <input type="date" name="due-date" id="due-date" placeholder="due date">
+                    <select class="priority-selector" name="priority" id="priority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low" selected>Low</option>
+                    </select>
+                </div>
+                <div class="edit-task-project-container">
+                    <select class="project-selector" name="add-task-project-selector" id="add-task-project-selector"></select>
+                </div>
+                <div class="edit-task-action-buttons">
+                    <button type="button" class="submit-task-form edit-task-save-button">Add Task</button>
+                    <button type="button" class="close-task-dialog edit-task-cancel-button">Close</button>
+                </div>
+            </div>
         `;
         addProjectSelector();
         }
     })
 
     document.querySelector('.add-task-div').addEventListener('click', (event) => {
-        if (event.target.className === 'close-task-dialog') {
+        if (event.target.classList.contains('close-task-dialog')) {
             document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
         }
     })
@@ -230,6 +242,9 @@ export const editTaskEvent = function() {
     content.addEventListener('click', (event) => {
 
         if (event.target.closest('.edit-task-button')) {
+
+            document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
+
             const taskId = event.target.closest('[data-task-id]').dataset.taskId;
             const projectId = document.querySelector('.selected-project').dataset.projectId;
             displayTasks(crud.allProjects[projectId].tasks);
@@ -240,7 +255,7 @@ export const editTaskEvent = function() {
             clickedTask.classList.add('edit-task-item');
             clickedTask.innerHTML = `
                 <div class="edit-task-title-container">
-                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" value=${crud.allProjects[projectId].tasks[taskId].title}>
+                    <input type="text" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" value="${crud.allProjects[projectId].tasks[taskId].title}" placeholder="Add title">
                 </div>
 
                 <div class="edit-task-project-container">
@@ -248,7 +263,7 @@ export const editTaskEvent = function() {
                 </div>
 
                 <div class="edit-task-description-container">
-                    <textarea class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input">${crud.allProjects[projectId].tasks[taskId].description}</textarea>
+                    <textarea class="edit-task-description-input" id="edit-task-description-input" name="edit-task-description-input" placeholder="Add description">${crud.allProjects[projectId].tasks[taskId].description}</textarea>
                 </div>
 
                 <div class="edit-task-priority-and-due-date-container">
