@@ -22,6 +22,7 @@ const addProjectEvents = function() {
             const title = document.querySelector('#project-title').value;
             crud.createProject(title);
             displayAddProjectButton();
+            displayTasks();
         }
         if (event.target.className === 'cancel-add-project-form') {
             displayAddProjectButton();
@@ -268,7 +269,7 @@ export const editTaskEvent = function() {
 
                 <div class="edit-task-priority-and-due-date-container">
                     <div class="edit-task-due-date-container">
-                        <input type="date" class="edit-task-title-input" id="edit-task-title-input" name="edit-task-title-input" value=${crud.allProjects[projectId].tasks[taskId].dueDate}>
+                        <input type="date" class="edit-task-due-date-input" id="edit-task-due-date-input" name="edit-task-due-date-input" value=${crud.allProjects[projectId].tasks[taskId].dueDate}>
                     </div>
                     <div class="edit-task-priority-container">
                         <select class="priority-selector" name="edit-priority-${taskId}" id="edit-priority-${taskId}">
@@ -304,7 +305,17 @@ export const editTask = function() {
     const content = document.querySelector('.tasks-content');
     content.addEventListener('click', (event) => {
         if (event.target.className === 'edit-task-save-button') {
-            const id = event.target.closest('[data-task-id]').dataset.taskId;
+            const taskId = event.target.closest('[data-task-id]').dataset.taskId;
+            const currentProjectId = document.querySelector('.selected-project').dataset.projectId;
+            
+            const title = document.querySelector('#edit-task-title-input').value;
+            const description = document.querySelector('#edit-task-description-input').value;
+            const dueDate = document.querySelector('#edit-task-due-date-input').value;
+            const priority = document.querySelector(`#edit-priority-${taskId}`).value;
+            const newProject = document.querySelector('#edit-project-selector').value;
+
+            crud.editTask(taskId, currentProjectId, newProject, title, description, dueDate, priority)
+            displayTasks();
         }
     })
 }();

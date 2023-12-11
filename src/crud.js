@@ -93,4 +93,18 @@ export const deleteProject = function(id) {
     }
 };
 
+export const editTask = function(taskId, currentProject, newProject, title, description, dueDate, priority) {
+    if (currentProject != newProject) {
+        deleteTask(taskId);
+        createTask(title, newProject, description, dueDate, priority);
+    }
+    else {
+        allProjects[currentProject].tasks[taskId].title = title;
+        allProjects[currentProject].tasks[taskId].description = description;
+        allProjects[currentProject].tasks[taskId].dueDate = dueDate;
+        allProjects[currentProject].tasks[taskId].priority = priority;
+        updateLocalStorage();
+    }
+;}
+
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }
