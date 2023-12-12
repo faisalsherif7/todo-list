@@ -185,7 +185,9 @@ export const displayTasks = function() {
         const task = tasksObject[key];
         content.innerHTML += `
             <div class="task-item" data-task-id="${task.id}">
-                <p class="task-completed"><input type="checkbox"></p>
+                <div class="task-completed">
+                    <div class="checkbox"></div>
+                </div>
                 <p class="task-title">${task.title}</p>
                 <p class="task-due-date">${task.dueDate}</p>
                 <p class="task-priority-${task.priority}">${task.priority}</p>
@@ -334,6 +336,14 @@ export const editTask = function() {
 
             crud.editTask(taskId, currentProjectId, newProject, title, description, dueDate, priority)
             displayTasks();
+        }
+    })
+}();
+
+const checkboxEvents = function() {
+    document.querySelector('.tasks-content').addEventListener('click', (event) => {
+        if (event.target.classList.contains('checkbox')) {
+            event.target.classList.toggle('checked');
         }
     })
 }();
