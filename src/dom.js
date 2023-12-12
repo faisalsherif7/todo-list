@@ -211,7 +211,8 @@ export const deleteTaskEvent = function() {
         if (event.target.closest('.delete-task-button')) {
             const clickedTask = event.target.closest('[data-task-id]');
             const id = clickedTask.dataset.taskId;
-            crud.deleteTask(id);
+            const projectId = document.querySelector('.selected-project').dataset.projectId;
+            crud.deleteTask(id, projectId);
             displayTasks();
         }
     })

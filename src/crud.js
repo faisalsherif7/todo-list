@@ -36,11 +36,6 @@ function createProject (title) {
 // Factory function to create new todo list, added to inbox by default
 const createTask = function(title, directory, description, dueDate, priority) {
 
-    // Define a "project" method for every todo item that returns the title of the project it belongs to
-    const project = function () {
-        return directory.title;
-    }
-
     // Define a "complete" property which defaults to False
     const complete = false;
 
@@ -64,17 +59,9 @@ export const getTasksInProject = function (projectId) {
     return allProjects[projectId].tasks;
 };
 
-export const deleteTask = function(id) {
-    for (const key in allProjects) {
-        const project = allProjects[key];
-        const tasks = project.tasks;
-        for (const key in project.tasks) {
-            if (key === id) {
-                delete allProjects[project.id].tasks[key];
-                updateLocalStorage();
-            }
-        }
-    }
+export const deleteTask = function(taskId, projectId) {
+    delete allProjects[projectId].tasks[taskId];
+    updateLocalStorage();
 };
 
 export const deleteProject = function(id) {
