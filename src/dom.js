@@ -206,6 +206,10 @@ export const displayTasks = function() {
 
         if (task.complete === true) {
             document.querySelector(`[data-task-id="${task.id}"] .checkbox`).classList.add('checked');
+            document.querySelector(`[data-task-id="${task.id}"] .task-title`).classList.add('strikethrough');
+            document.querySelector(`[data-task-id="${task.id}"] .task-priority-${task.priority}`).innerHTML = '';
+            document.querySelector(`[data-task-id="${task.id}"] .task-priority-${task.priority}`).className = '';
+            document.querySelector(`[data-task-id="${task.id}"] .action-buttons-container`).innerHTML = '';
         }
     }
 
@@ -355,6 +359,8 @@ const checkboxEvents = function() {
             const taskId = event.target.closest('[data-task-id]').dataset.taskId;
             const projectId = document.querySelector('.selected-project').dataset.projectId;
             crud.toggleCompletion(taskId, projectId);
+
+            displayTasks();
         }
     })
 }();

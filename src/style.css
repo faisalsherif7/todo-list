@@ -240,6 +240,7 @@ p {
     grid-template-columns: 30px 1fr 100px 80px 50px;
     align-items: center;
     gap: 10px;
+    height: 30px;
 }
 
 .task-completed {
@@ -258,6 +259,10 @@ p {
 
 .checked {
     background-color: #1b1d1f;
+}
+
+.strikethrough {
+    text-decoration: line-through;
 }
 
 .edit-task-item {
