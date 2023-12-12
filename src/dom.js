@@ -21,6 +21,8 @@ const addProjectEvents = function() {
         if (event.target.className === 'submit-project-form') {
             const title = document.querySelector('#project-title').value;
             crud.createProject(title);
+            displayProjects();
+            addProjectSelector();
             displayAddProjectButton();
             
             const newlyCreatedProject = document.querySelector('.project:last-child');

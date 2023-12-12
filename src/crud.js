@@ -1,5 +1,4 @@
 import { v4 as uuid } from 'uuid';
-import * as dom from './dom.js';
 
 let allProjects;
 let inboxId;
@@ -31,8 +30,6 @@ function createProject (title) {
     const newProject = { title, tasks, id };
     allProjects[id] = newProject;
     updateLocalStorage();
-    dom.displayProjects();
-    dom.addProjectSelector();
     return newProject;
 };
 
