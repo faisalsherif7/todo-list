@@ -50,6 +50,7 @@ const addProjectEvents = function() {
             trigger.classList.remove('add-project-container');
             trigger.classList.remove('sidebar-item');
             trigger.classList.add('add-project-form-container');
+            document.querySelector('#project-title').focus();
         }
     })
 }();
@@ -94,6 +95,7 @@ const addTaskEvents = function() {
             </div>
         `;
         addProjectSelector();
+        document.querySelector('#title').focus();
         addTaskDiv.scrollIntoView({ behavior: "smooth" });
         }
     })
@@ -201,6 +203,10 @@ export const displayTasks = function() {
                 </div>
             </div>
         `;
+
+        if (task.complete === true) {
+            document.querySelector(`[data-task-id="${task.id}"] .checkbox`).classList.add('checked');
+        }
     }
 
     document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
@@ -343,7 +349,12 @@ export const editTask = function() {
 const checkboxEvents = function() {
     document.querySelector('.tasks-content').addEventListener('click', (event) => {
         if (event.target.classList.contains('checkbox')) {
+
             event.target.classList.toggle('checked');
+
+            const taskId = event.target.closest('[data-task-id]').dataset.taskId;
+            const projectId = document.querySelector('.selected-project').dataset.projectId;
+            crud.toggleCompletion(taskId, projectId);
         }
     })
 }();

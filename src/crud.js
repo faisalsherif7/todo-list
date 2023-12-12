@@ -88,6 +88,11 @@ export const editTask = function(taskId, currentProject, newProject, title, desc
         allProjects[currentProject].tasks[taskId].priority = priority;
         updateLocalStorage();
     }
-;}
+};
+
+export const toggleCompletion = function(taskId, projectId) {
+    allProjects[projectId].tasks[taskId].complete = !allProjects[projectId].tasks[taskId].complete;
+    updateLocalStorage();
+};
 
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }
