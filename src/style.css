@@ -130,6 +130,7 @@ p {
 .project-title {
     text-overflow: ellipsis;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .add-project-container {

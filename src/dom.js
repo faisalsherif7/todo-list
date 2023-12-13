@@ -133,18 +133,18 @@ export const addProjectSelector = function() {
 
     selectProjects.forEach((selectProject) => {
         selectProject.innerHTML = '';
-    for (const key in crud.allProjects) {
-        const project = crud.allProjects[key];
-        if (currentProject.dataset.projectId === key) {
-            selectProject.innerHTML += `
-                <option value="${project.id}" selected>${project.title}</option>
-            `;
-        } else {
-            selectProject.innerHTML += `
-                <option value="${project.id}">${project.title}</option>
-            `;
+        for (const key in crud.allProjects) {
+            const project = crud.allProjects[key];
+            if (currentProject.dataset.projectId === key) {
+                selectProject.innerHTML += `
+                    <option value="${project.id}" selected>${project.title}</option>
+                `;
+            } else {
+                selectProject.innerHTML += `
+                    <option value="${project.id}">${project.title}</option>
+                `;
+            }
         }
-    }
     })    
 };
 
@@ -209,7 +209,7 @@ export const displayTasks = function() {
             document.querySelector(`[data-task-id="${task.id}"] .task-title`).classList.add('strikethrough');
             document.querySelector(`[data-task-id="${task.id}"] .task-priority-${task.priority}`).innerHTML = '';
             document.querySelector(`[data-task-id="${task.id}"] .task-priority-${task.priority}`).className = '';
-            document.querySelector(`[data-task-id="${task.id}"] .action-buttons-container`).innerHTML = '';
+            document.querySelector(`[data-task-id="${task.id}"] .edit-task-button`).innerHTML = '';
         }
     }
 
