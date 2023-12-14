@@ -58,6 +58,7 @@ p {
 
     --primary-background: #1b1d1f;
     --secondary-background: rgba(240, 242, 245, 0.85);
+    --tertiary-background: rgb(81, 88, 100);
     --hover-primary: #3f4246;
     --border-radius-value: 7px;
 }
@@ -202,12 +203,13 @@ p {
 .submit-project-form,
 .edit-task-save-button,
 .edit-project-save-button {
-    background-color: rgb(67, 185, 127);
+    background-color: var(--tertiary-background);
+    color: white;
 }
 
 .cancel-add-project-form,
 .edit-task-cancel-button {
-    background-color: rgb(239, 68, 68);
+    background-color: rgb(210, 212, 218);
 }
 
 .add-project-form-buttons button {
@@ -227,10 +229,6 @@ p {
 
 .delete-project-svg {
     fill: white;
-}
-
-.delete-task-svg {
-    fill: var(--primary-background);
 }
 
 .delete-project-button {
@@ -282,7 +280,7 @@ p {
 }
 
 .checked {
-    background-color: #1b1d1f;
+    background-color: var(--tertiary-background);
 }
 
 .strikethrough {
@@ -397,21 +395,8 @@ input[type="date"] {
     border-radius: var(--border-radius-value);
     justify-self: stretch;
     text-align: center;
-}
-
-.task-priority-High {
-    border: 2px solid rgb(209, 69, 59);
-    background-color: rgb(246, 218, 216);
-}
-
-.task-priority-Medium {
-    border: 2px solid rgb(235, 137, 9);
-    background-color: rgb(251, 231, 206);
-}
-
-.task-priority-Low {
-    border: 2px solid rgb(36, 111, 224);
-    background-color: rgb(211, 226, 249);
+    border: 2px solid var(--tertiary-background);
+    background-color: var(--secondary-background);
 }
 
 .add-task-div {
