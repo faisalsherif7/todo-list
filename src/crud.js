@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 let allProjects;
-let inboxId;
+export let inboxId;
 
 // Check if local storage contains "allProjects" and if not, initiate it with default "inbox" project
 const syncAllProjects = function() {
