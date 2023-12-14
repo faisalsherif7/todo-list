@@ -103,6 +103,17 @@ p {
     margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+#edit-project-input {
+    font-size: 1.3rem;
+    padding: 7px 15px;
+    border-radius: var(--border-radius-value);
+    border: 0px;
+    outline: 0;
+    background-color: white;
+    border: 0.5px solid rgb(224, 224, 224);
 }
 
 .edit-project-title svg {
@@ -189,7 +200,8 @@ p {
 }
 
 .submit-project-form,
-.edit-task-save-button {
+.edit-task-save-button,
+.edit-project-save-button {
     background-color: rgb(67, 185, 127);
 }
 

@@ -368,4 +368,31 @@ const checkboxEvents = function() {
     })
 }();
 
+const editProjectEvent = function() {
+    const content = document.querySelector('.content');
+    content.addEventListener('click', (event) => {
+        if (event.target.closest('.edit-project-title')) {
+            const projectId = document.querySelector('.selected-project').dataset.projectId;
+            const div = document.querySelector('.content-title-div');
+            div.innerHTML = `
+            <input type="text" name="edit-project-input" id="edit-project-input" value="${crud.allProjects[projectId].title}">
+            <div class="edit-task-action-buttons">
+                    <button type="button" class="edit-project-save-button">Save</button>
+                    <button type="button" class="edit-task-cancel-button">Cancel</button>
+            </div>
+            `;
+            document.querySelector('#edit-project-input');
+        }
+        if (event.target.className === 'edit-project-save-button') {
+            const projectId = document.querySelector('.selected-project').dataset.projectId;
+            const newTitle = document.querySelector('#edit-project-input').value;
+            crud.editProjectTitle(projectId, newTitle);
+            displayProjects();
+            removeSelectedClass();
+            addSelectedClass(document.querySelector(`[data-project-id="${projectId}"]`));
+            displayTasks();
+        }
+    })
+}();
+
 export { addTask };

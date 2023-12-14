@@ -95,4 +95,9 @@ export const toggleCompletion = function(taskId, projectId) {
     updateLocalStorage();
 };
 
+export const editProjectTitle = function(projectId, newTitle) {
+    allProjects[projectId].title = newTitle;
+    updateLocalStorage()
+}
+
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }
