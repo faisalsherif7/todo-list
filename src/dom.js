@@ -186,6 +186,9 @@ export const displayTasks = function() {
     `
 
     const tasksObject = crud.allProjects[projectId].tasks
+
+    let completedTasksPresent = false;
+
     for (const key in tasksObject) {
         const task = tasksObject[key];
         content.innerHTML += `
@@ -208,6 +211,7 @@ export const displayTasks = function() {
         `;
 
         if (task.complete === true) {
+            completedTasksPresent = true;
             document.querySelector(`[data-task-id="${task.id}"] .checkbox`).classList.add('checked');
             document.querySelector(`[data-task-id="${task.id}"] .task-title`).classList.add('strikethrough');
             document.querySelector(`[data-task-id="${task.id}"] .task-priority-${task.priority}`).innerHTML = '';
@@ -216,10 +220,16 @@ export const displayTasks = function() {
         }
     }
 
-    document.querySelector('.add-task-div').innerHTML = `
-    <button type="button" class="add-task-button">+ Add Task</button>
-    <button type="button" class="clear-completed-tasks">Clear Completed Tasks</button>
-    `;
+    if (completedTasksPresent) {
+        document.querySelector('.add-task-div').innerHTML = `
+        <button type="button" class="add-task-button">+ Add Task</button>
+        <button type="button" class="clear-completed-tasks">Clear Completed Tasks</button>
+        `;
+    } else {
+        document.querySelector('.add-task-div').innerHTML = `
+        <button type="button" class="add-task-button">+ Add Task</button>
+        `;
+    }
 };
 
 const clearCompletedTasks = function() {
