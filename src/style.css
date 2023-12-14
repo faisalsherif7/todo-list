@@ -417,10 +417,11 @@ input[type="date"] {
 .add-task-div {
     margin-top: 10px;
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
 }
 
-.add-task-button {
+.add-task-button,
+.clear-completed-tasks {
     padding: 10px 15px;
     font-size: 1rem;
     box-shadow: 0px 4px 4px #dfe5ec;
@@ -436,7 +437,8 @@ input[type="date"] {
     width: 100%;
 }
 
-.add-task-button:hover {
+.add-task-button:hover,
+.clear-completed-tasks:hover {
     background-color: var(--hover-primary);
     cursor: pointer;
 }

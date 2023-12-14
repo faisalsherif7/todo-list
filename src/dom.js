@@ -102,7 +102,7 @@ const addTaskEvents = function() {
 
     document.querySelector('.add-task-div').addEventListener('click', (event) => {
         if (event.target.classList.contains('close-task-dialog')) {
-            document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
+            displayTasks();
         }
     })
 
@@ -216,8 +216,21 @@ export const displayTasks = function() {
         }
     }
 
-    document.querySelector('.add-task-div').innerHTML = '<button type="button" class="add-task-button">+ Add Task</button>';
+    document.querySelector('.add-task-div').innerHTML = `
+    <button type="button" class="add-task-button">+ Add Task</button>
+    <button type="button" class="clear-completed-tasks">Clear Completed Tasks</button>
+    `;
 };
+
+const clearCompletedTasks = function() {
+    document.querySelector('.content').addEventListener('click', (event) => {
+        if (event.target.className === 'clear-completed-tasks') {
+            const projectId = document.querySelector('.selected-project').dataset.projectId;
+            crud.clearCompletedTasks(projectId);
+            displayTasks();
+        }
+    })
+}();
 
 export const deleteTaskEvent = function() {
     const content = document.querySelector('.tasks-content');

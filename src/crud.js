@@ -100,4 +100,15 @@ export const editProjectTitle = function(projectId, newTitle) {
     updateLocalStorage()
 }
 
+export const clearCompletedTasks = function(projectId) {
+    let project = allProjects[projectId].tasks;
+    for (const key in project) {
+        let task = project[key];
+        if (task.complete === true) {
+            delete allProjects[projectId].tasks[key];
+            updateLocalStorage();
+        }
+    }
+}
+
 export { allProjects, syncAllProjects, updateLocalStorage, createProject, createTask }
