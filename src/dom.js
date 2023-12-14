@@ -214,6 +214,7 @@ export const displayTasks = function() {
             completedTasksPresent = true;
             document.querySelector(`[data-task-id="${task.id}"] .checkbox`).classList.add('checked');
             document.querySelector(`[data-task-id="${task.id}"] .task-title`).classList.add('strikethrough');
+            document.querySelector(`[data-task-id="${task.id}"] .task-due-date`).innerHTML = '';
             document.querySelector(`[data-task-id="${task.id}"] .task-priority-${task.priority}`).innerHTML = '';
             document.querySelector(`[data-task-id="${task.id}"] .task-priority-${task.priority}`).className = '';
             document.querySelector(`[data-task-id="${task.id}"] .edit-task-button`).innerHTML = '';

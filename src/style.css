@@ -220,7 +220,6 @@ p {
     border: 0px;
     cursor: pointer;
     transition: 0.2s;
-    color: var(--primary-background);
 }
 
 .add-project-form-buttons button:hover {
@@ -280,7 +279,7 @@ p {
 }
 
 .checked {
-    background-color: var(--tertiary-background);
+    background-color: var(--primary-background);
 }
 
 .strikethrough {
