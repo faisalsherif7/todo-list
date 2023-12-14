@@ -101,6 +101,20 @@ p {
     font-size: 2rem;
     font-weight: 1000;
     margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-project-title svg {
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: var(--border-radius-value);
+    padding: 5px;
+}
+
+.edit-project-title svg:hover {
+    transform: scale(1.1);
+    background-color: rgb(219, 218, 218);
 }
 
 .sidebar-item {
