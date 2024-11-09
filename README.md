@@ -7,3 +7,5 @@ This is a simple To-Do List web application built to help users manage their tas
 - **Delete Tasks:** Remove tasks that are no longer needed.
 - **Mark Tasks as Completed:** Track the status of tasks by marking them as completed.
 - **Persistent Data:** Tasks persist even after the page is reloaded.
+
+[Link to live website](https://faisalsherif7.github.io/todo-list/)
